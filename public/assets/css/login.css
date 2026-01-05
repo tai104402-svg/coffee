@@ -1,0 +1,144 @@
+/* ===== RESET NHẸ ===== */
+* {
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+}
+
+/* ===== BACKGROUND ===== */
+.login-wrapper {
+    min-height: 100vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.6),
+            rgba(0, 0, 0, 0.6)),
+        url("/GocCaPhe/public/assets/img/goc.jpg") center / cover no-repeat;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ===== CARD ===== */
+.login-card {
+    width: 380px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 16px;
+    padding: 32px 28px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    animation: fadeIn 0.6s ease;
+}
+
+/* ===== HEADER ===== */
+.login-header {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.login-header h2 {
+    color: #6f4e37;
+    font-size: 28px;
+    margin-bottom: 6px;
+}
+
+.login-header p {
+    color: #777;
+    font-size: 14px;
+}
+
+/* ===== INPUT ===== */
+.input-group {
+    margin-bottom: 18px;
+}
+
+.input-group label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 6px;
+    color: #555;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    font-size: 15px;
+    transition: all 0.3s ease;
+}
+
+.input-group input:focus {
+    border-color: #6f4e37;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(111, 78, 55, 0.15);
+}
+
+/* ===== BUTTON ===== */
+.btn-login {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(135deg, #6f4e37, #8b5e3c);
+    border: none;
+    border-radius: 12px;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 8px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-login:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(111, 78, 55, 0.4);
+}
+
+/* ===== FOOTER ===== */
+.login-footer {
+    text-align: center;
+    margin-top: 18px;
+    font-size: 14px;
+}
+
+.login-footer a {
+    color: #6f4e37;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.login-footer a:hover {
+    text-decoration: underline;
+}
+
+/* ===== ANIMATION ===== */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.alert-error {
+    background: #ffe5e5;
+    color: #b00020;
+    padding: 12px;
+    border-radius: 10px;
+    font-size: 14px;
+    margin-bottom: 16px;
+    text-align: center;
+}
+
+.password-group {
+    position: relative;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 14px;
+    top: 38px;
+    cursor: pointer;
+    font-size: 16px;
+    color: #777;
+}

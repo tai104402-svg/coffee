@@ -1,0 +1,82 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
+                url("bg-coffee.jpg") no-repeat center/cover;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Khung form */
+.auth-box {
+    background: #fff8f0;
+    width: 380px;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+/* Tiêu đề */
+.auth-box h2 {
+    text-align: center;
+    color: #6f4e37;
+    margin-bottom: 20px;
+}
+
+/* Label */
+.auth-box label {
+    font-weight: bold;
+    color: #5a3e2b;
+}
+
+/* Input */
+.auth-box input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border-radius: 6px;
+    border: 1px solid #d3b8a3;
+    font-size: 15px;
+}
+
+.auth-box input:focus {
+    outline: none;
+    border-color: #b87333;
+    box-shadow: 0 0 5px rgba(184,115,51,0.6);
+}
+
+/* Button */
+.auth-box button {
+    width: 100%;
+    padding: 12px;
+    background: #6f4e37;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.auth-box button:hover {
+    background: #5a3e2b;
+}
+
+/* Link */
+.auth-box .links {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.auth-box .links a {
+    color: #6f4e37;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.auth-box .links a:hover {
+    text-decoration: underline;
+}

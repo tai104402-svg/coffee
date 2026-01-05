@@ -1,0 +1,195 @@
+/* ================= KHUNG BAO NGOÀI ================= */
+.profile-wrapper {
+    display: flex;
+    /* Quan trọng: Để chia làm 2 cột */
+    gap: 30px;
+    /* Khoảng cách giữa 2 cột */
+    align-items: flex-start;
+    padding-bottom: 50px;
+}
+
+/* ================= CỘT TRÁI (SIDEBAR) ================= */
+.profile-sidebar {
+    width: 300px;
+    /* Chiều rộng cố định */
+    flex-shrink: 0;
+    background: #fff;
+    border-radius: 8px;
+    padding: 30px 0;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    /* Đổ bóng nhẹ */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* --- AVATAR --- */
+.user-brief {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.sidebar-avatar-wrapper {
+    position: relative;
+    width: 200px;
+    /* Kích thước khung ảnh */
+    height: 200px;
+}
+
+.sidebar-avatar-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Cắt ảnh tròn đẹp không bị méo */
+    border-radius: 50%;
+    border: 4px solid #f0f0f0;
+}
+
+.upload-icon-label {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background: #fff;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+}
+
+.upload-icon-label:hover {
+    background: #f8f9fa;
+    transform: scale(1.1);
+}
+
+.upload-icon-label i {
+    color: #ff7a00;
+    /* Màu cam */
+    font-size: 20px;
+}
+
+/* --- MENU BÊN TRÁI --- */
+.sidebar-menu {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+}
+
+.sidebar-menu li a {
+    display: flex;
+    align-items: center;
+    padding: 12px 30px;
+    color: #333;
+    text-decoration: none;
+    font-size: 16px;
+    transition: 0.2s;
+}
+
+.sidebar-menu li a i {
+    width: 30px;
+    color: #888;
+}
+
+.sidebar-menu li.active a,
+.sidebar-menu li a:hover {
+    color: #ee4d2d;
+    /* Màu cam Shopee/Lazada style */
+    font-weight: 500;
+}
+
+.sidebar-menu li.active a i {
+    color: #ee4d2d;
+}
+
+/* ================= CỘT PHẢI (MAIN CONTENT) ================= */
+.profile-main {
+    flex: 1;
+    /* Chiếm hết phần còn lại */
+    background: #fff;
+    border-radius: 8px;
+    padding: 30px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+.profile-header h2 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.profile-header p {
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 25px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 15px;
+}
+
+/* --- FORM --- */
+.form-group-row {
+    display: flex;
+    /* Xếp ngang Label và Input */
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.form-group-row label {
+    width: 150px;
+    /* Chiều rộng cố định của nhãn */
+    color: #555;
+    text-align: right;
+    margin-right: 20px;
+    font-weight: 500;
+}
+
+.form-group-row input,
+.form-group-row textarea {
+    flex: 1;
+    /* Input chiếm hết khoảng trống còn lại */
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 15px;
+    outline: none;
+    transition: 0.3s;
+}
+
+.form-group-row input:focus,
+.form-group-row textarea:focus {
+    border-color: #888;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.05);
+}
+
+.readonly-input {
+    background-color: #f9f9f9;
+    color: #888;
+    cursor: not-allowed;
+}
+
+/* --- BUTTON --- */
+.btn-save-profile {
+    background-color: #ee4d2d;
+    /* Màu chủ đạo */
+    color: #fff;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 2px 5px rgba(238, 77, 45, 0.3);
+}
+
+.btn-save-profile:hover {
+    background-color: #d73211;
+    transform: translateY(-1px);
+}

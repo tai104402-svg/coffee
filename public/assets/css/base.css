@@ -1,0 +1,43 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    overflow-x: hidden;
+    /* ❗ chặn vỡ ngang */
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    background: #f8f6f3;
+    color: #333;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 0 24px;
+}
+
+/* Màu mặc định cho link */
+.nav-menu a {
+    color: white;
+    /* Hoặc màu bạn đang dùng */
+    text-decoration: none;
+    padding: 5px 10px;
+    transition: 0.3s;
+}
+
+/* Màu khi được chọn (Active) */
+.nav-menu a.active {
+    color: #ffcc00;
+    /* Màu vàng hoặc màu nổi bật bạn thích */
+    font-weight: bold;
+    border-bottom: 2px solid #ffcc00;
+}
