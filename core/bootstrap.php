@@ -12,6 +12,14 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
+$autoload = __DIR__ . '/../vendor/autoload.php';
+if (file_exists($autoload)) {
+    require_once $autoload;
+}
+
+// code bootstrap bên dưới
+
+
 // Đường dẫn gốc project (/var/www/html)
 $ROOT_PATH = dirname(__DIR__);
 
