@@ -6,7 +6,7 @@ class Database {
         if (self::$conn === null) {
             try {
                 $host = 'localhost';
-                $db   = 'coffee_shop'; // Đảm bảo tên DB này đúng trong phpMyAdmin
+                $db   = 'sql3813594'; // Đảm bảo tên DB này đúng trong phpMyAdmin
                 $user = 'root';
                 $pass = ''; 
                 $charset = 'utf8mb4';
