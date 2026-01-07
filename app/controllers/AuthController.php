@@ -14,6 +14,7 @@ class AuthController {
             exit;
         }
 
+        // 1️⃣ Lấy dữ liệu form và trim
         $email = strtolower(trim($_POST['email'] ?? ''));
         $password = trim($_POST['password'] ?? '');
 
@@ -23,31 +24,38 @@ class AuthController {
             exit;
         }
 
+        // 2️⃣ Start session nếu chưa start
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+
+        // 3️⃣ Kết nối DB
         $pdo = Database::connect();
 
-
-        $stmt = $pdo->prepare(
-        "SELECT * FROM users WHERE LOWER(email) = :email LIMIT 1"
-        );
-        $stmt->execute([
-        'email' => $email
-]);
-
+        // 4️⃣ Lấy user theo email (lowercase để tránh case-sensitive)
+        $stmt = $pdo->prepare("SELECT * FROM users WHERE LOWER(email) = :email LIMIT 1");
+        $stmt->execute(['email' => $email]);
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        echo '<pre>';
-        var_dump($email);
-        var_dump($password);
-        var_dump($user);
-        echo '</pre>';
-        die();
+        if (!$user) {
+            $_SESSION['error'] = 'Email hoặc mật khẩu không đúng';
+            header('Location: /?url=login');
+            exit;
+        }
 
+        // 5️⃣ Kiểm tra password
+        if (!password_verify($password, $user['password'])) {
+            $_SESSION['error'] = 'Email hoặc mật khẩu không đúng';
+            header('Location: /?url=login');
+            exit;
+        }
 
-        // Không lưu password trong session
+        // 6️⃣ Không lưu password trong session
         unset($user['password']);
         $_SESSION['user'] = $user;
 
-        $role = strtoupper($user['role']); // ← THÊM DÒNG NÀY
+        // 7️⃣ Redirect theo role
+        $role = strtoupper($user['role'] ?? 'USER');
 
         switch ($role) {
             case 'ADMIN':
@@ -60,7 +68,6 @@ class AuthController {
                 header("Location: /");
         }
         exit;
-
     }
 
     // ================= REGISTER =================
@@ -80,7 +87,6 @@ class AuthController {
         $password = trim($_POST['password'] ?? '');
         $passwordConfirm = trim($_POST['password_confirm'] ?? '');
 
-        // Email phải đúng định dạng & kết thúc .com
         if (!filter_var($email, FILTER_VALIDATE_EMAIL) || !preg_match('/\.com$/', $email)) {
             $_SESSION['error'] = 'Email phải đúng định dạng và kết thúc bằng .com';
             header('Location: /?url=register');
@@ -107,9 +113,8 @@ class AuthController {
 
         $pdo = Database::connect();
 
-        // Check email tồn tại
-        $stmt = $pdo->prepare("SELECT id FROM users WHERE email = :email");
-        $stmt->execute(['email' => $email]);
+        $stmt = $pdo->prepare("SELECT id FROM users WHERE LOWER(email) = :email");
+        $stmt->execute(['email' => strtolower($email)]);
         if ($stmt->fetch()) {
             $_SESSION['error'] = 'Email đã tồn tại';
             header('Location: /?url=register');
@@ -124,7 +129,7 @@ class AuthController {
         );
         $stmt->execute([
             'name' => $name,
-            'email' => $email,
+            'email' => strtolower($email),
             'password' => $hashPassword
         ]);
 
@@ -135,6 +140,9 @@ class AuthController {
 
     // ================= LOGOUT =================
     public function logout() {
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
         session_unset();
         session_destroy();
         header("Location: /?url=login");
