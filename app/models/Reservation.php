@@ -1,5 +1,13 @@
 <?php
-require_once dirname(__DIR__, 2) . '/config/Database.php';
+// ================================
+// FIX FOR RENDER + DOCKER
+// ================================
+
+// Load Composer autoload (RẤT QUAN TRỌNG)
+require_once dirname(__DIR__, 2) . '/vendor/autoload.php';
+
+// Load Database (chữ thường – đúng Linux)
+require_once dirname(__DIR__, 2) . '/config/database.php';
 
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
@@ -12,8 +20,9 @@ class Reservation {
     }
 
     private static function excelPath() {
-        return __DIR__ . '/../../storage/reservations.xlsx';
+        return dirname(__DIR__, 2) . '/storage/reservations.xlsx';
     }
+
 
     /* ================= CREATE (Cập nhật thêm user_id) ================= */
     public static function create($data) {
