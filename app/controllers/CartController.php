@@ -284,51 +284,34 @@ public function updateQuantity()
 {
     $id = $_POST['id'] ?? 0;
     $type = $_POST['type'] ?? '';
-<<<<<<< HEAD
     $newQty = isset($_POST['quantity']) ? (int)$_POST['quantity'] : 0; // Nhận số lượng nếu gõ trực tiếp
     $userId = $_SESSION['user']['id'];
 
     if (!$id) {
         echo json_encode(['success' => false, 'message' => 'ID không hợp lệ']);
-=======
-    $userId = $_SESSION['user']['id'];
-
-    if (!$id || !in_array($type, ['inc','dec'])) {
-        echo json_encode(['success'=>false]);
->>>>>>> dcea8e81e23200a1ef932b7761314d51206950ef
         exit;
     }
 
     $pdo = Database::connect();
 
     if ($type === 'inc') {
-<<<<<<< HEAD
         // Tăng nhưng phải kiểm tra xem hiện tại đã là 50 chưa
-=======
->>>>>>> dcea8e81e23200a1ef932b7761314d51206950ef
         $stmt = $pdo->prepare("
             UPDATE order_items oi
             JOIN orders o ON o.id = oi.order_id
             SET oi.quantity = oi.quantity + 1
-<<<<<<< HEAD
             WHERE oi.id=? AND o.status='PENDING' AND o.user_id=? AND oi.quantity < 50
         ");
         $stmt->execute([$id, $userId]);
     } 
     elseif ($type === 'dec') {
         // Giảm nhưng không thấp hơn 1
-=======
-            WHERE oi.id=? AND o.status='PENDING' AND o.user_id=?
-        ");
-    } else {
->>>>>>> dcea8e81e23200a1ef932b7761314d51206950ef
         $stmt = $pdo->prepare("
             UPDATE order_items oi
             JOIN orders o ON o.id = oi.order_id
             SET oi.quantity = GREATEST(1, oi.quantity - 1)
             WHERE oi.id=? AND o.status='PENDING' AND o.user_id=?
         ");
-<<<<<<< HEAD
         $stmt->execute([$id, $userId]);
     } 
     elseif ($type === 'set') {
@@ -356,21 +339,6 @@ public function updateQuantity()
     ]);
     exit;
 }
-=======
-    }
-
-    $stmt->execute([$id, $userId]);
-
-    $stmt = $pdo->prepare("SELECT quantity FROM order_items WHERE id=?");
-    $stmt->execute([$id]);
-    $qty = $stmt->fetchColumn();
-
-    echo json_encode(['success'=>true, 'quantity'=>$qty]);
-    exit;
-}
-
-
->>>>>>> dcea8e81e23200a1ef932b7761314d51206950ef
 }
 
 

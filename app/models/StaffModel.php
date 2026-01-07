@@ -53,10 +53,6 @@ class StaffModel {
 
     // --- DÀNH CHO STAFF ---
 
-<<<<<<< HEAD
-
-=======
->>>>>>> dcea8e81e23200a1ef932b7761314d51206950ef
     // Lấy lịch làm việc cá nhân (từ ngày hiện tại trở đi)
     public function getMySchedule($user_id) {
         $sql = "SELECT * FROM work_schedules 
@@ -66,7 +62,6 @@ class StaffModel {
         $stmt->execute(['uid' => $user_id]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-<<<<<<< HEAD
 
     // --- BỔ SUNG CHO CHỨC NĂNG EDIT ---
 
@@ -112,6 +107,4 @@ class StaffModel {
         $stmt->execute(['start' => $startDate, 'end' => $endDate]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-=======
->>>>>>> dcea8e81e23200a1ef932b7761314d51206950ef
 }

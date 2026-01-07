@@ -1,7 +1,6 @@
 <?php
 require_once __DIR__ . '/../models/StaffModel.php';
 
-<<<<<<< HEAD
 // IMPORT THƯ VIỆN EXCEL (Bắt buộc phải có đoạn này mới xuất được file)
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
@@ -9,8 +8,6 @@ use PhpOffice\PhpSpreadsheet\Style\Alignment;
 use PhpOffice\PhpSpreadsheet\Style\Border;
 use PhpOffice\PhpSpreadsheet\Style\Fill;
 
-=======
->>>>>>> dcea8e81e23200a1ef932b7761314d51206950ef
 class AdminStaffController {
     private $staffModel;
 
@@ -44,18 +41,12 @@ class AdminStaffController {
 
             if (isset($shifts[$shift_code])) {
                 $shift = $shifts[$shift_code];
-<<<<<<< HEAD
                 // Gọi model thêm lịch
-=======
->>>>>>> dcea8e81e23200a1ef932b7761314d51206950ef
                 $this->staffModel->assignShift($user_id, $work_date, $shift['name'], $shift['start'], $shift['end']);
             }
             
             header("Location: /GocCaPhe/public/index.php?url=admin/staff&date=$work_date");
-<<<<<<< HEAD
             exit;
-=======
->>>>>>> dcea8e81e23200a1ef932b7761314d51206950ef
         }
     }
 
@@ -64,7 +55,6 @@ class AdminStaffController {
         $id = $_GET['id'];
         $this->staffModel->deleteShift($id);
         header('Location: ' . $_SERVER['HTTP_REFERER']);
-<<<<<<< HEAD
         exit;
     }
 
@@ -245,7 +235,5 @@ class AdminStaffController {
         $writer = new Xlsx($spreadsheet);
         $writer->save('php://output');
         exit;
-=======
->>>>>>> dcea8e81e23200a1ef932b7761314d51206950ef
     }
 }
