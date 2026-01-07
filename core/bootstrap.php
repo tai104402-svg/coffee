@@ -3,9 +3,16 @@ ob_start();
 
 $isHttps = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off')
            || ($_SERVER['SERVER_PORT'] == 443);
-ini_set('session.cookie_secure', '1');
-ini_set('session.cookie_httponly', '1');
-ini_set('session.cookie_samesite', 'None');
+ini_set('session.cookie_httponly', 1);
+
+if (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') {
+    ini_set('session.cookie_secure', 1);
+    ini_set('session.cookie_samesite', 'None');
+} else {
+    ini_set('session.cookie_secure', 0);
+    ini_set('session.cookie_samesite', 'Lax');
+}
+
 
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
