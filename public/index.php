@@ -8,7 +8,7 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 require_once __DIR__ . '/../core/bootstrap.php';
 // THÊM DÒNG NÀY ĐỂ LOAD THƯ VIỆN
-require_once __DIR__ . '/../vendor/autoload.php';
+//require_once __DIR__ . '/../vendor/autoload.php';
 
 $url = $_GET['url'] ?? '';
 
