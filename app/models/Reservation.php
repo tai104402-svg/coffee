@@ -1,7 +1,6 @@
 <?php
 require_once dirname(__DIR__, 2) . '/config/Database.php';
 
-
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use PhpOffice\PhpSpreadsheet\IOFactory;
