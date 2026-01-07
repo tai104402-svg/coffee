@@ -1,28 +1,20 @@
 <?php
 require_once __DIR__ . '/../../../core/bootstrap.php';
-<<<<<<< HEAD
-
-=======
->>>>>>> dcea8e81e23200a1ef932b7761314d51206950ef
 $user = $_SESSION['user'] ?? null;
 $role = $user['role'] ?? null;
 $current_url = $_GET['url'] ?? 'index';
 
-<<<<<<< HEAD
 /* ================= BASE URL AUTO ================= */
 $base_url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on'
     ? "https"
     : "http") . "://" . $_SERVER['HTTP_HOST'];
 
 /* ================= CART ================= */
-=======
->>>>>>> dcea8e81e23200a1ef932b7761314d51206950ef
 $cartCount = 0;
 if ($user && $role === 'USER') {
     $cartCount = CartController::getCartCount($user['id']);
 }
 
-<<<<<<< HEAD
 /* ================= AVATAR ================= */
 $avatarPath = $base_url . '/public/assets/images/default-avatar.png';
 if ($user && !empty($user['avatar'])) {
@@ -30,24 +22,11 @@ if ($user && !empty($user['avatar'])) {
 }
 ?>
 
-=======
-$avatarPath = '/GocCaPhe/public/assets/images/default-avatar.png'; // Ảnh mặc định
-if ($user && !empty($user['avatar'])) {
-    $avatarPath = '/GocCaPhe/public/' . $user['avatar'];
-}
-
-?>
-
-
-
-
->>>>>>> dcea8e81e23200a1ef932b7761314d51206950ef
 <!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
     <title>Góc Cà Phê</title>
-<<<<<<< HEAD
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- ===== CSS GLOBAL ===== -->
     <link rel="stylesheet" href="<?= $base_url ?>/public/assets/css/base.css">
@@ -64,22 +43,6 @@ if ($user && !empty($user['avatar'])) {
 
 <body>
 
-=======
-
-    <!-- CSS GLOBAL -->
-    <link rel="stylesheet" href="/public/assets/css/base.css">
-    <link rel="stylesheet" href="/public/assets/css/header.css">
-    <link rel="stylesheet" href="/public/assets/css/trangchu.css">
-    <link rel="stylesheet" href="/public/assets/css/footer.css">
-    <link rel="stylesheet" href="/public/assets/css/style.css">
-    <link rel="stylesheet" href="/public/assets/css/introduce.css">
-    <link rel="stylesheet" href="/public/assets/css/profile.css">
-</head>
-<body>
-
-
-
->>>>>>> dcea8e81e23200a1ef932b7761314d51206950ef
 <header class="header">
     <div class="header-container">
 

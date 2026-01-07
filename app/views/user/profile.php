@@ -34,7 +34,6 @@
             <div class="profile-header">
                 <h2>Hồ sơ của tôi</h2>
                 <p>Quản lý thông tin hồ sơ để bảo mật tài khoản</p>
-<<<<<<< HEAD
 
                 <!-- ================= THÊM ĐOẠN NÀY VÀO ĐÂY ================= -->
                 <?php if (isset($_GET['status'])): ?>
@@ -58,8 +57,6 @@
                     <?php endif; ?>
                 <?php endif; ?>
                 <!-- ================= KẾT THÚC ĐOẠN THÊM ================= -->
-=======
->>>>>>> dcea8e81e23200a1ef932b7761314d51206950ef
             </div>
 
             <div class="profile-body">
