@@ -11,7 +11,7 @@ class StaffController {
     // Dashboard chính của nhân viên
     public function index() {
         if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'STAFF') {
-            header('Location: /GocCaPhe/public/index.php?url=login');
+            header('Location: /public/index.php?url=login');
             exit;
         }
 

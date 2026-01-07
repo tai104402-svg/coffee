@@ -2,7 +2,7 @@
 
 function requireLogin() {
     if (!isset($_SESSION['user'])) {
-        header("Location: /GocCaPhe/public/index.php?url=login");
+        header("Location: /public/index.php?url=login");
         exit;
     }
 }

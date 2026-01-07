@@ -33,7 +33,7 @@ class AdminCategoryController {
             'description' => $description
         ]);
 
-        header('Location: /GocCaPhe/public/index.php?url=admin/categories');
+        header('Location: /public/index.php?url=admin/categories');
         exit;
     }
 

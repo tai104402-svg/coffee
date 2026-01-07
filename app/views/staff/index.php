@@ -42,7 +42,6 @@
         <div class="col-md-8">
             <div class="d-flex justify-content-between align-items-center mb-3">
                 <h4>Danh sách đi làm ngày: <span class="text-danger"><?= date('d/m/Y', strtotime($selectedDate)) ?></span></h4>
-<<<<<<< HEAD
                 
                 <div class="d-flex gap-2">
                     <!-- Form chọn ngày -->
@@ -57,13 +56,6 @@
                         <i class="fas fa-file-excel"></i> Xuất Tuần
                     </a>
                 </div>
-=======
-                <form action="" method="GET" class="d-flex">
-                    <input type="hidden" name="url" value="admin/staff">
-                    <input type="date" name="date" class="form-control me-2" value="<?= $selectedDate ?>">
-                    <button class="btn btn-secondary">Xem</button>
-                </form>
->>>>>>> dcea8e81e23200a1ef932b7761314d51206950ef
             </div>
 
             <div class="card shadow-sm">
@@ -80,24 +72,17 @@
                         </thead>
                         <tbody>
                             <?php if (empty($dailyRoster)): ?>
-<<<<<<< HEAD
                                 <!-- ... Giữ nguyên ... -->
-=======
-                                <tr><td colspan="5" class="text-center py-4">Chưa có ai được xếp lịch ngày này.</td></tr>
->>>>>>> dcea8e81e23200a1ef932b7761314d51206950ef
                             <?php else: ?>
                                 <?php foreach ($dailyRoster as $row): 
                                     $hours = (strtotime($row['end_time']) - strtotime($row['start_time'])) / 3600;
                                     $salary = $hours * 25000;
                                 ?>
                                 <tr>
-<<<<<<< HEAD
                                     <!-- ... (Cột Tên, Ca, Giờ, Lương giữ nguyên) ... -->
-=======
->>>>>>> dcea8e81e23200a1ef932b7761314d51206950ef
                                     <td>
                                         <div class="d-flex align-items-center">
-                                            <img src="<?= !empty($row['avatar']) ? '/GocCaPhe/public/'.$row['avatar'] : '/GocCaPhe/public/assets/images/default-avatar.png' ?>" 
+                                            <img src="<?= !empty($row['avatar']) ? '/public/'.$row['avatar'] : '/public/assets/images/default-avatar.png' ?>" 
                                                  class="rounded-circle me-2" width="40" height="40" style="object-fit:cover;">
                                             <div>
                                                 <strong><?= htmlspecialchars($row['name']) ?></strong><br>
@@ -112,7 +97,6 @@
                                     </td>
                                     <td><?= substr($row['start_time'],0,5) ?> - <?= substr($row['end_time'],0,5) ?></td>
                                     <td class="fw-bold text-success"><?= number_format($salary) ?> đ</td>
-<<<<<<< HEAD
                                     
                                     <!-- CỘT HÀNH ĐỘNG ĐƯỢC CẬP NHẬT -->
                                     <td>
@@ -124,10 +108,6 @@
                                         <a href="?url=admin/staff/delete&id=<?= $row['id'] ?>" class="btn btn-sm btn-danger" onclick="return confirm('Xóa lịch này?')">
                                             <i class="fas fa-trash">Xóa</i>
                                         </a>
-=======
-                                    <td>
-                                        <a href="?url=admin/staff/delete&id=<?= $row['id'] ?>" class="btn btn-sm btn-danger" onclick="return confirm('Xóa lịch này?')">Xóa</a>
->>>>>>> dcea8e81e23200a1ef932b7761314d51206950ef
                                     </td>
                                 </tr>
                                 <?php endforeach; ?>
@@ -137,10 +117,7 @@
                 </div>
             </div>
         </div>
-<<<<<<< HEAD
 
 
-=======
->>>>>>> dcea8e81e23200a1ef932b7761314d51206950ef
     </div>
 </div>

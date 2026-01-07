@@ -16,9 +16,9 @@
 
         <div>
             <h4>Khám phá</h4>
-            <a href="/GocCaPhe/public/index.php">Trang chủ</a>
-            <a href="/GocCaPhe/public/index.php?url=menu">Sản phẩm</a>
-            <a href="/GocCaPhe/public/index.php?url=datban">Đặt bàn</a>
+            <a href="/public/index.php">Trang chủ</a>
+            <a href="/public/index.php?url=menu">Sản phẩm</a>
+            <a href="/public/index.php?url=datban">Đặt bàn</a>
         </div>
 
         <div>

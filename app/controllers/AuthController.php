@@ -10,7 +10,7 @@ class AuthController {
     public function handleLogin() {
 
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-            header('Location: /GocCaPhe/public/index.php?url=login');
+            header('Location: /public/index.php?url=login');
             exit;
         }
 
@@ -22,14 +22,14 @@ class AuthController {
         !preg_match('/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.com$/', $email)) {
 
         $_SESSION['error'] = 'Email phải đúng định dạng và kết thúc bằng .com';
-        header('Location: /GocCaPhe/public/index.php?url=register');
+        header('Location: /public/index.php?url=register');
         exit;
     }
 
 
         if ($email === '' || $password === '') {
             $_SESSION['error'] = 'Vui lòng nhập đầy đủ email và mật khẩu';
-            header('Location: /GocCaPhe/public/index.php?url=login');
+            header('Location: /public/index.php?url=login');
             exit;
         }
 
@@ -41,7 +41,7 @@ class AuthController {
 
         if (!$user || !password_verify($password, $user['password'])) {
             $_SESSION['error'] = 'Email hoặc mật khẩu không đúng';
-            header('Location: /GocCaPhe/public/index.php?url=login');
+            header('Location: /public/index.php?url=login');
             exit;
         }
 
@@ -52,13 +52,13 @@ class AuthController {
 
         switch ($user['role']) {
             case 'ADMIN':
-                header("Location: /GocCaPhe/public/index.php?url=admin");
+                header("Location: /public/index.php?url=admin");
                 break;
             case 'STAFF':
-                header("Location: /GocCaPhe/public/index.php?url=staff");
+                header("Location: /public/index.php?url=staff");
                 break;
             default:
-                header("Location: /GocCaPhe/public/index.php");
+                header("Location: /public/index.php");
         }
         exit;
     }
@@ -73,7 +73,7 @@ class AuthController {
     public function handleRegister() {
 
     if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-        header('Location: /GocCaPhe/public/index.php?url=register');
+        header('Location: /public/index.php?url=register');
         exit;
     }
 
@@ -87,7 +87,7 @@ class AuthController {
         !preg_match('/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.com$/', $email)) {
 
         $_SESSION['error'] = 'Email phải đúng định dạng và kết thúc bằng .com';
-        header('Location: /GocCaPhe/public/index.php?url=login');
+        header('Location: /public/index.php?url=login');
         exit;
     }
 
@@ -101,21 +101,21 @@ class AuthController {
     // 1. kiểm tra rỗng
     if ($name === '' || $email === '' || $password === '' || $passwordConfirm === '') {
         $_SESSION['error'] = 'Vui lòng nhập đầy đủ thông tin';
-        header('Location: /GocCaPhe/public/index.php?url=register');
+        header('Location: /public/index.php?url=register');
         exit;
     }
 
     // 2. kiểm tra nhập lại mật khẩu
     if ($password !== $passwordConfirm) {
         $_SESSION['error'] = 'Mật khẩu nhập lại không khớp';
-        header('Location: /GocCaPhe/public/index.php?url=register');
+        header('Location: /public/index.php?url=register');
         exit;
     }
 
     // 3. kiểm tra độ mạnh mật khẩu
     if (strlen($password) < 8) {
         $_SESSION['error'] = 'Mật khẩu phải từ 8 ký tự trở lên';
-        header('Location: /GocCaPhe/public/index.php?url=register');
+        header('Location: /public/index.php?url=register');
         exit;
     }
 
@@ -126,7 +126,7 @@ class AuthController {
     $stmt->execute(['email' => $email]);
     if ($stmt->fetch()) {
         $_SESSION['error'] = 'Email đã tồn tại';
-        header('Location: /GocCaPhe/public/index.php?url=register');
+        header('Location: /public/index.php?url=register');
         exit;
     }
 
@@ -146,7 +146,7 @@ class AuthController {
 
     // 7. quay về login
     $_SESSION['success'] = 'Đăng ký thành công, vui lòng đăng nhập';
-    header('Location: /GocCaPhe/public/index.php?url=login');
+    header('Location: /public/index.php?url=login');
     exit;
 }
 
@@ -154,7 +154,7 @@ class AuthController {
     // ================= LOGOUT =================
     public function logout() {
         session_destroy();
-        header("Location: /GocCaPhe/public/index.php?url=login");
+        header("Location: /public/index.php?url=login");
         exit;
     }
 }

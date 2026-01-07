@@ -6,13 +6,13 @@ class UserController {
     public function profile() {
         // Kiểm tra đăng nhập
         if (!isset($_SESSION['user'])) {
-            header('Location: /GocCaPhe/public/index.php?url=login');
+            header('Location: /public/index.php?url=login');
             exit();
         }
 
         $user = $_SESSION['user'];
         // Xử lý đường dẫn avatar hiển thị (nếu null thì dùng ảnh mặc định)
-        $avatarPath = !empty($user['avatar']) ? '/GocCaPhe/public/' . $user['avatar'] : '/GocCaPhe/public/assets/images/default-avatar.jng';
+        $avatarPath = !empty($user['avatar']) ? '/public/' . $user['avatar'] : '/public/assets/images/default-avatar.jng';
         
         require_once __DIR__ . '/../views/user/profile.php';
     }
@@ -32,7 +32,7 @@ class UserController {
             // $     : Kết thúc chuỗi
             if (!preg_match('/^0\d{9}$/', $phone)) {
                 // Nếu không đúng định dạng, quay lại trang profile và báo lỗi
-                header('Location: /GocCaPhe/public/index.php?url=profile&status=error_phone');
+                header('Location: /public/index.php?url=profile&status=error_phone');
                 exit; // Dừng code ngay lập tức, không cho chạy tiếp xuống dưới
             }
             // ------------------------------------------
@@ -72,7 +72,7 @@ class UserController {
                 $_SESSION['user']['avatar'] = $avatarPath;
 
                 // Redirect về trang profile kèm thông báo thành công
-                header('Location: /GocCaPhe/public/index.php?url=profile&status=success');
+                header('Location: /public/index.php?url=profile&status=success');
             } else {
                 echo "Có lỗi xảy ra khi cập nhật.";
             }
