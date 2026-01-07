@@ -1,23 +1,25 @@
-
 <?php
+// ===== CHỐNG LỖI "headers already sent" =====
+ob_start();
+
+// ===== BẬT DEBUG (CHỈ DÙNG KHI DEV) =====
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+// ===== LOAD BOOTSTRAP (SESSION + AUTOLOAD + CONFIG) =====
 require_once __DIR__ . '/../core/bootstrap.php';
-// THÊM DÒNG NÀY ĐỂ LOAD THƯ VIỆN
-require_once __DIR__ . '/../vendor/autoload.php';
 
+// ===== ROUTING =====
 $url = $_GET['url'] ?? '';
 
 switch ($url) {
-    
+
     case '':
         (new HomeController)->index();
         break;
 
+    /* ================= CART ================= */
     case 'cart/add':
         requireLogin();
         (new CartController)->add();
@@ -34,8 +36,9 @@ switch ($url) {
         break;
 
     case 'cart/count':
-    (new CartController)->count();
-    break;
+        (new CartController)->count();
+        break;
+
     case 'cart/delete':
         requireLogin();
         (new CartController)->delete();
@@ -51,8 +54,7 @@ switch ($url) {
         (new CartController)->index();
         break;
 
-
-    /* AUTH — KHÔNG ĐƯỢC CHẶN */
+    /* ================= AUTH ================= */
     case 'login':
         (new AuthController)->login();
         break;
@@ -65,55 +67,59 @@ switch ($url) {
         (new AuthController)->logout();
         break;
 
-    /* USER */
+    case 'register':
+        (new AuthController)->register();
+        break;
+
+    case 'register-handle':
+        (new AuthController)->handleRegister();
+        break;
+
+    /* ================= USER ================= */
     case 'menu':
         requireLogin();
         (new ProductController)->list();
         break;
 
+    case 'profile':
+        requireLogin();
+        (new UserController)->profile();
+        break;
+
+    case 'profile/update':
+        requireLogin();
+        (new UserController)->updateProfile();
+        break;
+
+    /* ================= PAGES ================= */
+    case 'gioithieu':
+        (new PageController)->gioithieu();
+        break;
+
     case 'datban':
         (new HomeController)->datban();
-    break;
+        break;
+
+    /* ================= RESERVATION ================= */
+    case 'reservation/create':
+        (new ReservationController)->create();
+        break;
 
     case 'reservation/store':
         (new ReservationController)->store();
-    break;
-        break;
-    
-    case 'gioithieu':
-    (new PageController)->gioithieu();
-    break;
-
-
-    case 'admin/staff':
-        requireRole('ADMIN');
-        // require_once __DIR__ . '/../controllers/AdminStaffController.php'; 
-        (new AdminStaffController)->index(); // Xem danh sách & lịch
         break;
 
-    case 'admin/staff/store':
-        requireRole('ADMIN');
-        (new AdminStaffController)->storeSchedule(); // Lưu lịch mới
+    case 'reservation/history':
+        (new ReservationController)->history();
         break;
 
-    case 'admin/staff/delete':
-        requireRole('ADMIN');
-        (new AdminStaffController)->deleteSchedule(); // Xóa lịch
-        break;
-
-    /* --- KHU VỰC CỦA NHÂN VIÊN (STAFF) --- */
+    /* ================= STAFF ================= */
     case 'staff':
-        // Trang dashboard chính của nhân viên
-        (new StaffController)->index(); 
+        (new StaffController)->index();
         break;
 
-
-    /* ADMIN - USER MANAGEMENT */
+    /* ================= ADMIN - USERS ================= */
     case 'admin':
-        requireRole('ADMIN');
-        (new AdminUserController)->index();
-        break;
-
     case 'admin/users':
         requireRole('ADMIN');
         (new AdminUserController)->index();
@@ -144,7 +150,7 @@ switch ($url) {
         (new AdminUserController)->delete();
         break;
 
-    /* ADMIN - CATEGORY MANAGEMENT */
+    /* ================= ADMIN - CATEGORIES ================= */
     case 'admin/categories':
         requireRole('ADMIN');
         (new AdminCategoryController)->index();
@@ -174,8 +180,8 @@ switch ($url) {
         requireRole('ADMIN');
         (new AdminCategoryController)->delete();
         break;
-    
-    /* ADMIN - PRODUCT MANAGEMENT */
+
+    /* ================= ADMIN - PRODUCTS ================= */
     case 'admin/products':
         requireRole('ADMIN');
         (new AdminProductController)->index();
@@ -205,75 +211,30 @@ switch ($url) {
         requireRole('ADMIN');
         (new AdminProductController)->delete();
         break;
-    
-    /* ADMIN - RESERVATIONS */
 
-    // 1. Form đặt bàn
-    case 'reservation/create':
-        require_once __DIR__ . '/../app/controllers/ReservationController.php';
-        (new ReservationController)->create();
-        break;
-
-    // 2. Xử lý lưu
-    case 'reservation/store':
-        require_once __DIR__ . '/../app/controllers/ReservationController.php';
-        (new ReservationController)->store();
-        break;
-
-    // 3. Xem lịch sử
-    case 'reservation/history':
-        require_once __DIR__ . '/../app/controllers/ReservationController.php';
-        (new ReservationController)->history();
-        break;
-
+    /* ================= ADMIN - RESERVATIONS ================= */
     case 'admin/reservations':
         requireStaffOrAdmin();
         (new AdminReservationController)->index();
-    break;
+        break;
 
     case 'admin/reservations/approve':
         requireStaffOrAdmin();
         (new AdminReservationController)->approve();
-    break;
+        break;
 
     case 'admin/reservations/cancel':
         requireStaffOrAdmin();
         (new AdminReservationController)->cancel();
-    break;
         break;
-    
-     /* ADMIN - REVENUE MANAGEMENT */
-    case 'admin/revenues':   // hỗ trợ cả 2 URL
+
+    /* ================= ADMIN - REVENUE ================= */
+    case 'admin/revenues':
         requireRole('ADMIN');
         (new AdminRevenueController)->index();
         break;
 
-
-    case 'register':
-        (new AuthController)->register();
-        break;
-
-    case 'register-handle':
-        (new AuthController)->handleRegister();
-        break;
-
-    case 'profile':
-        requireLogin();
-        (new UserController)->profile();
-        break;
-
-    case 'profile/update':
-        requireLogin();
-        (new UserController)->updateProfile();
-        break;
-
-    // case 'profile/update-password':
-    //     requireLogin();
-    //     (new UserController)->updatePassword();
-    //     break;
-
-    /* ORDER APPROVAL - ADMIN + STAFF */
-
+    /* ================= ORDERS ================= */
     case 'admin/orders':
         requireStaffOrAdmin();
         (new OrderController)->index();
@@ -289,11 +250,9 @@ switch ($url) {
         (new OrderController)->reject();
         break;
 
-
+    /* ================= 404 ================= */
     default:
         http_response_code(404);
-        echo "404 - Không tìm thấy trang";
-
-    
+        echo '404 - Không tìm thấy trang';
+        break;
 }
-
