@@ -1,9 +1,6 @@
 <?php
-// ========================================
-// BOOTSTRAP FILE - SAFE FOR RENDER
-// ========================================
 ob_start();
-// Start session (chỉ 1 lần)
+
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
