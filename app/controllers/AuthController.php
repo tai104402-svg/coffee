@@ -35,11 +35,13 @@ class AuthController {
 
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        if (!$user || !password_verify($password, $user['password'])) {
-            $_SESSION['error'] = 'Email hoặc mật khẩu không đúng';
-            header('Location: /?url=login');
-            exit;
-        }
+        echo '<pre>';
+        var_dump($email);
+        var_dump($password);
+        var_dump($user);
+        echo '</pre>';
+        die();
+
 
         // Không lưu password trong session
         unset($user['password']);
