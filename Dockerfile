@@ -26,7 +26,6 @@ RUN chown -R www-data:www-data /var/www/html \
     && chmod -R 755 /var/www/html
 
 EXPOSE 80
-=======# Dùng PHP + Apache
 FROM php:8.1-apache
 
 # Bật mod rewrite
@@ -47,4 +46,4 @@ RUN chown -R www-data:www-data /var/www/html \
 
 # Expose cổng 80
 EXPOSE 80
->>>>>>> dcea8e81e23200a1ef932b7761314d51206950ef
+
