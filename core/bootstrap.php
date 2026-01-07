@@ -1,27 +1,23 @@
 <?php
-session_start();
-
 // ========================================
-// BOOTSTRAP FILE - FIX FOR RENDER + DOCKER
+// BOOTSTRAP FILE - SAFE FOR RENDER
 // ========================================
 
-require_once dirname(__DIR__) . '/vendor/autoload.php';
-require_once dirname(__DIR__) . '/config/database.php';
-// KHÔNG cho phép output trước session
+// Start session (chỉ 1 lần)
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-$autoload = __DIR__ . '/../vendor/autoload.php';
+// Root path (/var/www/html)
+$ROOT_PATH = dirname(__DIR__);
+
+// ========================================
+// Composer autoload (OPTIONAL)
+// ========================================
+$autoload = $ROOT_PATH . '/vendor/autoload.php';
 if (file_exists($autoload)) {
     require_once $autoload;
 }
-
-// code bootstrap bên dưới
-
-
-// Đường dẫn gốc project (/var/www/html)
-$ROOT_PATH = dirname(__DIR__);
 
 // ========================================
 // Database
@@ -34,19 +30,12 @@ require_once $ROOT_PATH . '/config/database.php';
 require_once $ROOT_PATH . '/app/middleware/auth.php';
 
 // ========================================
-// Controllers - Auth & Home
+// Controllers
 // ========================================
 require_once $ROOT_PATH . '/app/controllers/AuthController.php';
 require_once $ROOT_PATH . '/app/controllers/HomeController.php';
-
-// ========================================
-// Controllers - User
-// ========================================
 require_once $ROOT_PATH . '/app/controllers/ReservationController.php';
 
-// ========================================
-// Controllers - Admin
-// ========================================
 require_once $ROOT_PATH . '/app/controllers/AdminUserController.php';
 require_once $ROOT_PATH . '/app/controllers/AdminCategoryController.php';
 require_once $ROOT_PATH . '/app/controllers/ProductController.php';
