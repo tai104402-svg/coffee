@@ -5,8 +5,8 @@
     <?php unset($_SESSION['error']); ?>
 <?php endif; ?>
 <div class="login-wrapper">
-    <link rel="stylesheet" href="/GocCaPhe/public/assets/css/login.css">
-    <form class="login-card" method="post" action="/GocCaPhe/public/index.php?url=login-handle">
+    <link rel="stylesheet" href="/public/assets/css/login.css">
+    <form class="login-card" method="post" action="/public/index.php?url=login-handle">
         
         <div class="login-header">
             <h2>
@@ -32,9 +32,9 @@
 
         <div class="login-footer">
             <span>Bạn chưa có tài khoản?</span>
-            <a href="/GocCaPhe/public/index.php?url=register">Đăng ký</a>
+            <a href="/public/index.php?url=register">Đăng ký</a>
         </div>
 
     </form>
-    <script src="/GocCaPhe/public/assets/js/login.js"></script>
+    <script src="/public/assets/js/login.js"></script>
 </div>

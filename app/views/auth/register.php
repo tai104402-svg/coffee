@@ -6,10 +6,10 @@
 <?php endif; ?>
 
 <div class="login-wrapper">
-    <link rel="stylesheet" href="/GocCaPhe/public/assets/css/login.css">
+    <link rel="stylesheet" href="/public/assets/css/login.css">
 
     <form class="login-card" method="post"
-          action="/GocCaPhe/public/index.php?url=register-handle">
+          action="/public/index.php?url=register-handle">
 
         <div class="login-header">
             <h2>☕ Góc Cà Phê</h2>
@@ -43,10 +43,10 @@
 
         <div class="login-footer">
             <span>Đã có tài khoản?</span>
-            <a href="/GocCaPhe/public/index.php?url=login">Đăng nhập</a>
+            <a href="/public/index.php?url=login">Đăng nhập</a>
         </div>
 
     </form>
 
-    <script src="/GocCaPhe/public/assets/js/login.js"></script>
+    <script src="/public/assets/js/login.js"></script>
 </div>
