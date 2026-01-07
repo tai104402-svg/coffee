@@ -4,14 +4,14 @@
     </div>
     <?php unset($_SESSION['error']); ?>
 <?php endif; ?>
+
 <div class="login-wrapper">
-    <link rel="stylesheet" href="/public/assets/css/login.css">
-    <form class="login-card" method="post" action="/public/index.php?url=login-handle">
+    <link rel="stylesheet" href="/assets/css/login.css">
+
+    <form class="login-card" method="post" action="/?url=login-handle">
         
         <div class="login-header">
-            <h2>
-            ☕ Góc Cà Phê   
-            </h2>
+            <h2>☕ Góc Cà Phê</h2>
             <p>Đăng nhập để tiếp tục</p>
         </div>
 
@@ -32,9 +32,10 @@
 
         <div class="login-footer">
             <span>Bạn chưa có tài khoản?</span>
-            <a href="/public/index.php?url=register">Đăng ký</a>
+            <a href="/?url=register">Đăng ký</a>
         </div>
 
     </form>
-    <script src="/public/assets/js/login.js"></script>
+
+    <script src="/assets/js/login.js"></script>
 </div>
