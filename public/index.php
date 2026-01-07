@@ -1,11 +1,8 @@
 <?php
-=======
-<?php
 // ===== CHỐNG LỖI "headers already sent" =====
 ob_start();
 
 // ===== BẬT DEBUG (CHỈ DÙNG KHI DEV) =====
->>>>>>> dcea8e81e23200a1ef932b7761314d51206950ef
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -20,7 +17,7 @@ $url = $_GET['url'] ?? '';
 
 switch ($url) {
     
-=======
+
 // ===== LOAD BOOTSTRAP (SESSION + AUTOLOAD + CONFIG) =====
 require_once __DIR__ . '/../core/bootstrap.php';
 
@@ -80,7 +77,6 @@ switch ($url) {
     /* AUTH — KHÔNG ĐƯỢC CHẶN */
 
     /* ================= AUTH ================= */
->>>>>>> dcea8e81e23200a1ef932b7761314d51206950ef
     case 'login':
         (new AuthController)->login();
         break;
