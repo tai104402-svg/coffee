@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . '/../layouts/header.php';
+<<<<<<< HEAD
 
 /**
  * Tách sản phẩm SPECIAL và sản phẩm thường
@@ -14,6 +15,8 @@ foreach ($products as $p) {
         $normalProducts[] = $p;
     }
 }
+=======
+>>>>>>> dcea8e81e23200a1ef932b7761314d51206950ef
 ?>
 
 <div class="container">
@@ -32,6 +35,7 @@ foreach ($products as $p) {
         </select>
     </form>
 
+<<<<<<< HEAD
     <!-- ===== MÓN ĐẶC BIỆT ===== -->
     <?php if (!empty($specialProducts)): ?>
         <h2 style="margin-top:30px;">🌟 Món đặc biệt</h2>
@@ -95,11 +99,44 @@ foreach ($products as $p) {
     </div>
 </div>
 
+=======
+    <div class="product-list">
+    <?php foreach ($products as $p): ?>
+        <div class="product-card">
+            <div class="product-image">
+                <img src="/GocCaPhe/public/assets/img/<?= htmlspecialchars($p['image']) ?>" alt="<?= htmlspecialchars($p['name']) ?>">
+            </div>
+
+            <div class="product-info">
+                <h3><?= htmlspecialchars($p['name']) ?></h3>
+                <p class="category">Danh mục: <?= htmlspecialchars($p['category_name']) ?></p>
+
+                <p class="status <?= $p['status'] == 'AVAILABLE' ? 'available' : 'hidden' ?>">
+                    <?= $p['status'] == 'AVAILABLE' ? '✔ Còn hàng' : '✖ Hết hàng' ?>
+                </p>
+
+                <div class="price-btn-wrapper">
+                    <p class="price"><?= number_format($p['price'], 0, ',', '.') ?>₫</p>
+                    <form class="add-to-cart-form">
+                        <input type="hidden" name="product_id" value="<?= $p['id'] ?>">
+                        <button type="submit" <?= $p['status'] == 'HIDDEN' ? 'disabled' : '' ?>>Thêm vào giỏ</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    <?php endforeach; ?>
+</div>
+
+</div>
+>>>>>>> dcea8e81e23200a1ef932b7761314d51206950ef
 <script>
 document.querySelectorAll('.add-to-cart-form').forEach(form => {
     form.addEventListener('submit', async e => {
         e.preventDefault();
+<<<<<<< HEAD
 
+=======
+>>>>>>> dcea8e81e23200a1ef932b7761314d51206950ef
         const formData = new FormData(form);
 
         const res = await fetch('/GocCaPhe/public/index.php?url=cart/add', {
@@ -107,17 +144,31 @@ document.querySelectorAll('.add-to-cart-form').forEach(form => {
             body: formData
         });
 
+<<<<<<< HEAD
         if (res.ok) {
             const data = await res.json();
             if (data.success) {
+=======
+        if(res.ok){
+            const data = await res.json();
+
+            if(data.success){
+                // toast
+>>>>>>> dcea8e81e23200a1ef932b7761314d51206950ef
                 const toast = document.createElement('div');
                 toast.className = 'cart-toast';
                 toast.textContent = '✅ Thêm vào giỏ hàng thành công';
                 document.body.appendChild(toast);
                 setTimeout(() => toast.remove(), 3000);
 
+<<<<<<< HEAD
                 const cartSpan = document.querySelector('.btn-cart .cart-count');
                 if (cartSpan) {
+=======
+                // update số lượng giỏ hàng
+                const cartSpan = document.querySelector('.btn-cart .cart-count');
+                if(cartSpan){
+>>>>>>> dcea8e81e23200a1ef932b7761314d51206950ef
                     cartSpan.textContent = data.cartCount;
                 } else {
                     const span = document.createElement('span');
@@ -129,6 +180,13 @@ document.querySelectorAll('.add-to-cart-form').forEach(form => {
         }
     });
 });
+<<<<<<< HEAD
 </script>
 
+=======
+
+</script>
+
+
+>>>>>>> dcea8e81e23200a1ef932b7761314d51206950ef
 <?php require_once __DIR__ . '/../layouts/footer.php'; ?>

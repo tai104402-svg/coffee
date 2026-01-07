@@ -1,4 +1,5 @@
 <?php require_once __DIR__ . '/../layouts/header.php'; ?>
+<<<<<<< HEAD
 <style>
 /* Xóa nút tăng giảm mặc định trên Chrome, Safari, Edge và Opera */
 input::-webkit-outer-spin-button,
@@ -12,6 +13,9 @@ input[type=number] {
     -moz-appearance: textfield;
 }
 </style>
+=======
+
+>>>>>>> dcea8e81e23200a1ef932b7761314d51206950ef
 <div class="container mt-4">
     <h2>Giỏ hàng của bạn</h2>
 
@@ -62,7 +66,11 @@ input[type=number] {
                             <td>
                                 <div class="input-group" style="width:120px;">
                                     <button type="button" class="btn btn-outline-secondary btn-decrease" <?= $item['order_status'] !== 'PENDING' ? 'disabled' : '' ?>>-</button>
+<<<<<<< HEAD
                                     <input type="number" class="form-control text-center quantity-input" value="<?= $item['quantity'] ?>" min="1" max="50" <?= $item['order_status'] !== 'PENDING' ? 'readonly' : '' ?>>
+=======
+                                    <input type="text" class="form-control text-center quantity-input" value="<?= $item['quantity'] ?>" readonly>
+>>>>>>> dcea8e81e23200a1ef932b7761314d51206950ef
                                     <button type="button" class="btn btn-outline-secondary btn-increase" <?= $item['order_status'] !== 'PENDING' ? 'disabled' : '' ?>>+</button>
                                 </div>
                             </td>
@@ -190,6 +198,7 @@ input[type=number] {
         });
 
         // Nút tăng giảm
+<<<<<<< HEAD
         document.querySelectorAll('tr[data-order-item-id]').forEach(tr => {
             const decreaseBtn = tr.querySelector('.btn-decrease');
             const increaseBtn = tr.querySelector('.btn-increase');
@@ -285,6 +294,51 @@ input[type=number] {
                 });
             }
         });
+=======
+        document.querySelectorAll('tr[data-order-item-id]').forEach(tr=>{
+        const decreaseBtn = tr.querySelector('.btn-decrease');
+        const increaseBtn = tr.querySelector('.btn-increase');
+        const qtyInput = tr.querySelector('.quantity-input');
+        const priceEl = tr.querySelector('.price');
+        const subtotalEl = tr.querySelector('.subtotal');
+
+        const price = parseInt(priceEl.textContent.replace(/\D/g,''));
+        
+        if(decreaseBtn && increaseBtn){
+            // GỌI AJAX TĂNG
+            increaseBtn.addEventListener('click', ()=>{
+                fetch('/GocCaPhe/public/index.php?url=cart/updateQuantity', {
+                    method:'POST',
+                    headers:{'Content-Type':'application/x-www-form-urlencoded'},
+                    body:`id=${tr.dataset.orderItemId}&type=inc`
+                })
+                .then(r=>r.json())
+                .then(res=>{
+                    if(res.success){
+                        qtyInput.value = res.quantity;
+                        subtotalEl.textContent = formatCurrency(res.quantity * price);
+                        calculateTotal();
+                    }
+                });
+            });
+            decreaseBtn.addEventListener('click', ()=>{
+                fetch('/GocCaPhe/public/index.php?url=cart/updateQuantity', {
+                    method:'POST',
+                    headers:{'Content-Type':'application/x-www-form-urlencoded'},
+                    body:`id=${tr.dataset.orderItemId}&type=dec`
+                })
+                .then(r=>r.json())
+                .then(res=>{
+                    if(res.success){
+                        qtyInput.value = res.quantity;
+                        subtotalEl.textContent = formatCurrency(res.quantity * price);
+                        calculateTotal();
+                    }
+                });
+                });
+        }
+    });
+>>>>>>> dcea8e81e23200a1ef932b7761314d51206950ef
         // Checkout button
         document.getElementById('checkout-btn').addEventListener('click', ()=>{
             const selectedIds = [...document.querySelectorAll('.item-checkbox:checked')].map(cb=>cb.value);

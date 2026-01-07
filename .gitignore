@@ -1,5 +1,6 @@
 /vendor/
 public/assets/uploads/*
+<<<<<<< HEAD
 /storage/
 /vendor
 /node_modules
@@ -8,3 +9,6 @@ public/assets/uploads/*
 /storage/logs
 /storage/cache
 .env
+=======
+/storage/
+>>>>>>> dcea8e81e23200a1ef932b7761314d51206950ef

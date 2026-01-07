@@ -1,4 +1,5 @@
 <?php
+<<<<<<< HEAD
 require_once __DIR__ . '/../models/Order.php';
 
 
@@ -16,6 +17,11 @@ public function exportExcel()
 }
 
 
+=======
+
+class OrderController
+{
+>>>>>>> dcea8e81e23200a1ef932b7761314d51206950ef
     public function index()
     {
         $pdo = Database::connect();

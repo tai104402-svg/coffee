@@ -35,6 +35,7 @@ class AdminReservationController {
         header("Location: index.php?url=admin/reservations");
         exit;
     }
+<<<<<<< HEAD
 
     public function export() {
         if (session_status() == PHP_SESSION_NONE) session_start();
@@ -46,4 +47,6 @@ class AdminReservationController {
         // Gọi model xuất file
         Reservation::exportAllReservationsExcel($exportName, $exportRole);
     }
+=======
+>>>>>>> dcea8e81e23200a1ef932b7761314d51206950ef
 }

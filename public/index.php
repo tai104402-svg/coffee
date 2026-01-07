@@ -1,9 +1,18 @@
+<<<<<<< HEAD
 
 <?php
+=======
+<?php
+// ===== CHỐNG LỖI "headers already sent" =====
+ob_start();
+
+// ===== BẬT DEBUG (CHỈ DÙNG KHI DEV) =====
+>>>>>>> dcea8e81e23200a1ef932b7761314d51206950ef
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
+<<<<<<< HEAD
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 require_once __DIR__ . '/../core/bootstrap.php';
@@ -14,10 +23,24 @@ $url = $_GET['url'] ?? '';
 
 switch ($url) {
     
+=======
+// ===== LOAD BOOTSTRAP (SESSION + AUTOLOAD + CONFIG) =====
+require_once __DIR__ . '/../core/bootstrap.php';
+
+// ===== ROUTING =====
+$url = $_GET['url'] ?? '';
+
+switch ($url) {
+
+>>>>>>> dcea8e81e23200a1ef932b7761314d51206950ef
     case '':
         (new HomeController)->index();
         break;
 
+<<<<<<< HEAD
+=======
+    /* ================= CART ================= */
+>>>>>>> dcea8e81e23200a1ef932b7761314d51206950ef
     case 'cart/add':
         requireLogin();
         (new CartController)->add();
@@ -34,8 +57,14 @@ switch ($url) {
         break;
 
     case 'cart/count':
+<<<<<<< HEAD
     (new CartController)->count();
     break;
+=======
+        (new CartController)->count();
+        break;
+
+>>>>>>> dcea8e81e23200a1ef932b7761314d51206950ef
     case 'cart/delete':
         requireLogin();
         (new CartController)->delete();
@@ -51,8 +80,12 @@ switch ($url) {
         (new CartController)->index();
         break;
 
+<<<<<<< HEAD
 
     /* AUTH — KHÔNG ĐƯỢC CHẶN */
+=======
+    /* ================= AUTH ================= */
+>>>>>>> dcea8e81e23200a1ef932b7761314d51206950ef
     case 'login':
         (new AuthController)->login();
         break;
@@ -65,12 +98,25 @@ switch ($url) {
         (new AuthController)->logout();
         break;
 
+<<<<<<< HEAD
     /* USER */
+=======
+    case 'register':
+        (new AuthController)->register();
+        break;
+
+    case 'register-handle':
+        (new AuthController)->handleRegister();
+        break;
+
+    /* ================= USER ================= */
+>>>>>>> dcea8e81e23200a1ef932b7761314d51206950ef
     case 'menu':
         requireLogin();
         (new ProductController)->list();
         break;
 
+<<<<<<< HEAD
     case 'datban':
         (new HomeController)->datban();
     break;
@@ -129,6 +175,47 @@ switch ($url) {
         (new AdminUserController)->index();
         break;
 
+=======
+    case 'profile':
+        requireLogin();
+        (new UserController)->profile();
+        break;
+
+    case 'profile/update':
+        requireLogin();
+        (new UserController)->updateProfile();
+        break;
+
+    /* ================= PAGES ================= */
+    case 'gioithieu':
+        (new PageController)->gioithieu();
+        break;
+
+    case 'datban':
+        (new HomeController)->datban();
+        break;
+
+    /* ================= RESERVATION ================= */
+    case 'reservation/create':
+        (new ReservationController)->create();
+        break;
+
+    case 'reservation/store':
+        (new ReservationController)->store();
+        break;
+
+    case 'reservation/history':
+        (new ReservationController)->history();
+        break;
+
+    /* ================= STAFF ================= */
+    case 'staff':
+        (new StaffController)->index();
+        break;
+
+    /* ================= ADMIN - USERS ================= */
+    case 'admin':
+>>>>>>> dcea8e81e23200a1ef932b7761314d51206950ef
     case 'admin/users':
         requireRole('ADMIN');
         (new AdminUserController)->index();
@@ -159,7 +246,11 @@ switch ($url) {
         (new AdminUserController)->delete();
         break;
 
+<<<<<<< HEAD
     /* ADMIN - CATEGORY MANAGEMENT */
+=======
+    /* ================= ADMIN - CATEGORIES ================= */
+>>>>>>> dcea8e81e23200a1ef932b7761314d51206950ef
     case 'admin/categories':
         requireRole('ADMIN');
         (new AdminCategoryController)->index();
@@ -189,8 +280,13 @@ switch ($url) {
         requireRole('ADMIN');
         (new AdminCategoryController)->delete();
         break;
+<<<<<<< HEAD
     
     /* ADMIN - PRODUCT MANAGEMENT */
+=======
+
+    /* ================= ADMIN - PRODUCTS ================= */
+>>>>>>> dcea8e81e23200a1ef932b7761314d51206950ef
     case 'admin/products':
         requireRole('ADMIN');
         (new AdminProductController)->index();
@@ -220,6 +316,7 @@ switch ($url) {
         requireRole('ADMIN');
         (new AdminProductController)->delete();
         break;
+<<<<<<< HEAD
     
     /* ADMIN - RESERVATIONS */
 
@@ -241,6 +338,10 @@ switch ($url) {
         (new ReservationController)->history();
         break;
 
+=======
+
+    /* ================= ADMIN - RESERVATIONS ================= */
+>>>>>>> dcea8e81e23200a1ef932b7761314d51206950ef
     case 'admin/reservations':
         requireStaffOrAdmin();
         (new AdminReservationController)->index();
@@ -256,6 +357,7 @@ switch ($url) {
         (new AdminReservationController)->cancel();
         break;
 
+<<<<<<< HEAD
     case 'admin/reservations/export':
         requireRole('ADMIN'); 
         (new AdminReservationController)->export();
@@ -263,10 +365,15 @@ switch ($url) {
     
      /* ADMIN - REVENUE MANAGEMENT */
     case 'admin/revenues': 
+=======
+    /* ================= ADMIN - REVENUE ================= */
+    case 'admin/revenues':
+>>>>>>> dcea8e81e23200a1ef932b7761314d51206950ef
         requireRole('ADMIN');
         (new AdminRevenueController)->index();
         break;
 
+<<<<<<< HEAD
     case 'admin/revenues/export':
         requireRole('ADMIN');
         (new AdminRevenueController)->export();
@@ -303,6 +410,9 @@ switch ($url) {
 
 
 
+=======
+    /* ================= ORDERS ================= */
+>>>>>>> dcea8e81e23200a1ef932b7761314d51206950ef
     case 'admin/orders':
         requireStaffOrAdmin();
         (new OrderController)->index();
@@ -318,6 +428,7 @@ switch ($url) {
         (new OrderController)->reject();
         break;
 
+<<<<<<< HEAD
 
     default:
         http_response_code(404);
@@ -326,3 +437,11 @@ switch ($url) {
     
 }
 
+=======
+    /* ================= 404 ================= */
+    default:
+        http_response_code(404);
+        echo '404 - Không tìm thấy trang';
+        break;
+}
+>>>>>>> dcea8e81e23200a1ef932b7761314d51206950ef

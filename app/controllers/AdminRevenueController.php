@@ -9,6 +9,7 @@ class AdminRevenueController {
     }
 
     public function index() {
+<<<<<<< HEAD
         $filterDate = $_GET['date'] ?? date('Y-m-d');
         $filterMonth = $_GET['month'] ?? date('m');
         $filterYear = $_GET['year'] ?? date('Y');
@@ -41,6 +42,27 @@ class AdminRevenueController {
         // 3. Biểu đồ
         $chartData = $this->revenueModel->getRevenueByCategory($filterMonth, $filterYear);
         $chartLabels = []; $chartValues = [];
+=======
+        // 1. Lấy tham số filter (Fix lỗi lọc)
+        $filterDate = isset($_GET['date']) ? $_GET['date'] : date('Y-m-d');
+        $filterMonth = isset($_GET['month']) ? $_GET['month'] : date('m');
+        $filterYear = isset($_GET['year']) ? $_GET['year'] : date('Y');
+
+        // 2. Lấy số liệu thống kê
+        $dailyStats = $this->revenueModel->getDailyStats($filterDate);
+        $dailySalary = $this->revenueModel->getDailyStaffCost($filterDate);
+        $dailyProfit = $dailyStats['total_revenue'] - $dailySalary;
+
+        $monthlyStats = $this->revenueModel->getMonthlyStats($filterMonth, $filterYear);
+        $monthlyProfit = $monthlyStats['revenue'] - $monthlyStats['salary'];
+
+        // 3. [MỚI] Lấy dữ liệu biểu đồ
+        $chartData = $this->revenueModel->getRevenueByCategory($filterMonth, $filterYear);
+
+        // Chuẩn bị dữ liệu cho Chart.js (Chuyển sang JSON)
+        $chartLabels = [];
+        $chartValues = [];
+>>>>>>> dcea8e81e23200a1ef932b7761314d51206950ef
         foreach ($chartData as $item) {
             $chartLabels[] = $item['name'];
             $chartValues[] = $item['total_money'];
@@ -48,6 +70,7 @@ class AdminRevenueController {
 
         require __DIR__ . '/../views/admin/revenue/index.php';
     }
+<<<<<<< HEAD
 
     public function export() {
         if (session_status() == PHP_SESSION_NONE) session_start();
@@ -56,4 +79,6 @@ class AdminRevenueController {
         $exportName = $_SESSION['user']['name'] ?? 'Admin';
         $this->revenueModel->exportRevenueExcel($month, $year, $exportName);
     }
+=======
+>>>>>>> dcea8e81e23200a1ef932b7761314d51206950ef
 }

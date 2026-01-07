@@ -24,6 +24,7 @@ class UserController {
             $name = trim($_POST['name']);
             $phone = trim($_POST['phone']);
             $address = trim($_POST['address']);
+<<<<<<< HEAD
 
             // --- THÊM CHECK SỐ ĐIỆN THOẠI TẠI ĐÂY ---
             // Regex: /^0\d{9}$/ 
@@ -36,6 +37,8 @@ class UserController {
                 exit; // Dừng code ngay lập tức, không cho chạy tiếp xuống dưới
             }
             // ------------------------------------------
+=======
+>>>>>>> dcea8e81e23200a1ef932b7761314d51206950ef
             
             // 2. Xử lý Avatar
             // Mặc định lấy avatar cũ từ session
@@ -66,6 +69,10 @@ class UserController {
 
             if ($result) {
                 // 4. CẬP NHẬT LẠI SESSION (Rất quan trọng)
+<<<<<<< HEAD
+=======
+                // Để khi reload trang, thông tin mới hiện ra ngay lập tức
+>>>>>>> dcea8e81e23200a1ef932b7761314d51206950ef
                 $_SESSION['user']['name'] = $name;
                 $_SESSION['user']['phone'] = $phone;
                 $_SESSION['user']['address'] = $address;
@@ -78,6 +85,10 @@ class UserController {
             }
         }
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> dcea8e81e23200a1ef932b7761314d51206950ef
     // ... (Giữ nguyên phần updatePassword cũ của bạn) ...
 }
 ?>

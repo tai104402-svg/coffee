@@ -1,21 +1,28 @@
 <?php
 require_once __DIR__ . '/../../../core/bootstrap.php';
+<<<<<<< HEAD
 
+=======
+>>>>>>> dcea8e81e23200a1ef932b7761314d51206950ef
 $user = $_SESSION['user'] ?? null;
 $role = $user['role'] ?? null;
 $current_url = $_GET['url'] ?? 'index';
 
+<<<<<<< HEAD
 /* ================= BASE URL AUTO ================= */
 $base_url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on'
     ? "https"
     : "http") . "://" . $_SERVER['HTTP_HOST'];
 
 /* ================= CART ================= */
+=======
+>>>>>>> dcea8e81e23200a1ef932b7761314d51206950ef
 $cartCount = 0;
 if ($user && $role === 'USER') {
     $cartCount = CartController::getCartCount($user['id']);
 }
 
+<<<<<<< HEAD
 /* ================= AVATAR ================= */
 $avatarPath = $base_url . '/public/assets/images/default-avatar.png';
 if ($user && !empty($user['avatar'])) {
@@ -23,11 +30,24 @@ if ($user && !empty($user['avatar'])) {
 }
 ?>
 
+=======
+$avatarPath = '/GocCaPhe/public/assets/images/default-avatar.png'; // Ảnh mặc định
+if ($user && !empty($user['avatar'])) {
+    $avatarPath = '/GocCaPhe/public/' . $user['avatar'];
+}
+
+?>
+
+
+
+
+>>>>>>> dcea8e81e23200a1ef932b7761314d51206950ef
 <!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
     <title>Góc Cà Phê</title>
+<<<<<<< HEAD
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- ===== CSS GLOBAL ===== -->
     <link rel="stylesheet" href="<?= $base_url ?>/public/assets/css/base.css">
@@ -44,18 +64,39 @@ if ($user && !empty($user['avatar'])) {
 
 <body>
 
+=======
+
+    <!-- CSS GLOBAL -->
+    <link rel="stylesheet" href="/public/assets/css/base.css">
+    <link rel="stylesheet" href="/public/assets/css/header.css">
+    <link rel="stylesheet" href="/public/assets/css/trangchu.css">
+    <link rel="stylesheet" href="/public/assets/css/footer.css">
+    <link rel="stylesheet" href="/public/assets/css/style.css">
+    <link rel="stylesheet" href="/public/assets/css/introduce.css">
+    <link rel="stylesheet" href="/public/assets/css/profile.css">
+</head>
+<body>
+
+
+
+>>>>>>> dcea8e81e23200a1ef932b7761314d51206950ef
 <header class="header">
     <div class="header-container">
 
         <!-- LOGO -->
         <div class="logo">
+<<<<<<< HEAD
             <a href="<?= $base_url ?>/public/index.php">
+=======
+            <a href="/GocCaPhe/public/index.php">
+>>>>>>> dcea8e81e23200a1ef932b7761314d51206950ef
                 ☕ Góc Cà Phê
             </a>
         </div>
 
         <!-- MENU -->
         <nav class="nav-menu">
+<<<<<<< HEAD
             <a href="<?= $base_url ?>/public/index.php"
                class="<?= ($current_url == 'index') ? 'active' : '' ?>">Trang chủ</a>
 
@@ -82,10 +123,39 @@ if ($user && !empty($user['avatar'])) {
 
             <?php elseif ($role === 'STAFF'): ?>
                 <a href="<?= $base_url ?>/public/index.php?url=staff" class="btn-cart">
+=======
+            <a href="/GocCaPhe/public/index.php" 
+               class="<?= ($current_url == 'index') ? 'active' : '' ?>">Trang chủ</a>
+            
+            <a href="/GocCaPhe/public/index.php?url=menu" 
+               class="<?= ($current_url == 'menu') ? 'active' : '' ?>">Sản phẩm</a>
+            
+            <a href="/GocCaPhe/public/index.php?url=datban" 
+               class="<?= ($current_url == 'datban') ? 'active' : '' ?>">Đặt bàn</a>
+            
+            <a  href="/GocCaPhe/public/index.php?url=gioithieu" 
+               class="<?= ($current_url == 'gioithieu') ? 'active' : '' ?>"> Giới thiệu </a>
+        </nav>
+
+        <!-- USER ACTION -->
+        <div class="nav-user">
+
+            <?php if ($role === 'USER'): ?>
+                <a href="/GocCaPhe/public/index.php?url=cart" class="btn-cart">
+                    🛒 Giỏ hàng
+                    <?php if ($cartCount > 0): ?>
+                       <span class="cart-count" id="cart-count"><?= $cartCount ?></span>
+                    <?php endif; ?>
+            </a>
+
+            <?php elseif ($role === 'STAFF'): ?>
+                <a href="/GocCaPhe/public/index.php?url=staff" class="btn-cart">
+>>>>>>> dcea8e81e23200a1ef932b7761314d51206950ef
                     Nhân viên
                 </a>
 
             <?php elseif ($role === 'ADMIN'): ?>
+<<<<<<< HEAD
                 <span>Admin Panel</span>
             <?php endif; ?>
 
@@ -118,6 +188,62 @@ if ($user && !empty($user['avatar'])) {
 <script>
 function refreshCartCount(){
     fetch('<?= $base_url ?>/public/index.php?url=cart/count')
+=======
+                    Admin Panel
+                </a>
+            <?php endif; ?>
+              <?php if ($user): ?>
+                
+                <div class="user-dropdown">
+                  <div style="display:flex; align-items:center; gap:8px;">
+    <span class="user-name-display">
+        <?= htmlspecialchars($user['name']) ?> ▾
+    </span>
+
+    <img 
+        src="<?= $avatarPath ?>" 
+        alt="Avatar"
+        style="
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            object-fit: cover;
+            display: block;
+            cursor: pointer;
+        "
+    >
+</div>
+
+                    <div class="user-menu"> 
+                       <a href="/GocCaPhe/public/index.php?url=profile">Tài khoản</a>
+                    <a href="/GocCaPhe/public/index.php?url=logout">Đăng xuất</a> 
+                </div>
+            
+
+            <?php else: ?>
+                <a href="/GocCaPhe/public/index.php?url=login">Đăng nhập</a>
+                <a href="/GocCaPhe/public/index.php?url=register" class="btn-register">
+                    Đăng ký
+                </a>
+            <?php endif; ?>
+
+        </div>
+
+    </div>
+
+    
+</header>
+    <!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Optional JS (cho modal, dropdown, tooltip)
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script> -->
+
+
+<script>
+function refreshCartCount(){
+    fetch('/GocCaPhe/public/index.php?url=cart/count')
+>>>>>>> dcea8e81e23200a1ef932b7761314d51206950ef
         .then(res => res.json())
         .then(data => {
             const el = document.getElementById('cart-count');
@@ -132,6 +258,15 @@ function refreshCartCount(){
         });
 }
 
+<<<<<<< HEAD
 refreshCartCount();
 setInterval(refreshCartCount, 2000);
 </script>
+=======
+// gọi ngay khi load
+refreshCartCount();
+
+// gọi lại sau mỗi 2s (hoặc sau AJAX add/delete)
+setInterval(refreshCartCount, 2000);
+</script>
+>>>>>>> dcea8e81e23200a1ef932b7761314d51206950ef
