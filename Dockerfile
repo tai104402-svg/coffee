@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 FROM php:8.2-apache
 
 # Enable mod_rewrite (cần cho MVC routing)
