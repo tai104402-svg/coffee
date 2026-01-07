@@ -26,8 +26,7 @@ RUN chown -R www-data:www-data /var/www/html \
     && chmod -R 755 /var/www/html
 
 EXPOSE 80
-=======
-# Dùng PHP + Apache
+=======# Dùng PHP + Apache
 FROM php:8.1-apache
 
 # Bật mod rewrite
