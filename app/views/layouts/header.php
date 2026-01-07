@@ -56,18 +56,26 @@ if ($user && !empty($user['avatar'])) {
 
         <!-- MENU -->
         <nav class="nav-menu">
-            <a href="<?= $base_url ?>/public/index.php"
-               class="<?= ($current_url == 'index') ? 'active' : '' ?>">Trang chủ</a>
+    <a href="<?= $base_url ?>/public/index.php"
+       class="<?= ($current_url == 'index') ? 'active' : '' ?>">
+        Trang chủ
+    </a>
 
-            <a href="<?= $base_url ?>/public/index.php?url=menu"
-               class="<?= ($current_url == 'menu') ? 'active' : '' ?>">Sản phẩm</a>
+    <a href="<?= $base_url ?>/public/index.php?url=menu"
+       class="<?= ($current_url == 'menu') ? 'active' : '' ?>">
+        Sản phẩm
+    </a>
 
-            <a href="<?= $base_url ?>/public/index.php?url=datban"
-               class="<?= ($current_url == 'datban') ? 'active' : '' ?>">Đặt bàn</a>
+    <a href="<?= $base_url ?>/public/index.php?url=datban"
+       class="<?= ($current_url == 'datban') ? 'active' : '' ?>">
+        Đặt bàn
+    </a>
 
-            <a href="<?= $base_url ?>/public/index.php?url=gioithieu"
-               class="<?= ($current_url == 'gioithieu') ? 'active' : '' ?>">Giới thiệu</a>
-        </nav>
+    <a href="<?= $base_url ?>/public/index.php?url=gioithieu"
+       class="<?= ($current_url == 'gioithieu') ? 'active' : '' ?>">
+        Giới thiệu
+    </a>
+</nav>
 
         <!-- USER -->
         <div class="nav-user">
