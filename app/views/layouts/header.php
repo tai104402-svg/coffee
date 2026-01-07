@@ -16,9 +16,9 @@ if ($user && $role === 'USER') {
 }
 
 /* ================= AVATAR ================= */
-$avatarPath = $base_url . '/public/assets/images/default-avatar.png';
+$avatarPath = $base_url . '/assets/images/default-avatar.png';
 if ($user && !empty($user['avatar'])) {
-    $avatarPath = $base_url . '/public/' . $user['avatar'];
+    $avatarPath = $base_url . '/' . $user['avatar'];
 }
 ?>
 
@@ -49,29 +49,29 @@ if ($user && !empty($user['avatar'])) {
 
         <!-- LOGO -->
         <div class="logo">
-            <a href="<?= $base_url ?>/public/index.php">
+            <a href="/">
                 ☕ Góc Cà Phê
             </a>
         </div>
 
         <!-- MENU -->
         <nav class="nav-menu">
-    <a href="<?= $base_url ?>/public/index.php"
+    <a href="/"
        class="<?= ($current_url == 'index') ? 'active' : '' ?>">
         Trang chủ
     </a>
 
-    <a href="<?= $base_url ?>/public/index.php?url=menu"
+    <a href="/?url=menu"
        class="<?= ($current_url == 'menu') ? 'active' : '' ?>">
         Sản phẩm
     </a>
 
-    <a href="<?= $base_url ?>/public/index.php?url=datban"
+    <a href="/?url=datban"
        class="<?= ($current_url == 'datban') ? 'active' : '' ?>">
         Đặt bàn
     </a>
 
-    <a href="<?= $base_url ?>/public/index.php?url=gioithieu"
+    <a href="/?url=gioithieu"
        class="<?= ($current_url == 'gioithieu') ? 'active' : '' ?>">
         Giới thiệu
     </a>
@@ -81,7 +81,7 @@ if ($user && !empty($user['avatar'])) {
         <div class="nav-user">
 
             <?php if ($role === 'USER'): ?>
-                <a href="<?= $base_url ?>/public/index.php?url=cart" class="btn-cart">
+                <a href="/?url=cart" class="btn-cart">
                     🛒 Giỏ hàng
                     <?php if ($cartCount > 0): ?>
                         <span class="cart-count" id="cart-count"><?= $cartCount ?></span>
@@ -89,7 +89,7 @@ if ($user && !empty($user['avatar'])) {
                 </a>
 
             <?php elseif ($role === 'STAFF'): ?>
-                <a href="<?= $base_url ?>/public/index.php?url=staff" class="btn-cart">
+                <a href="/?url=staff" class="btn-cart">
                     Nhân viên
                 </a>
 
@@ -109,13 +109,13 @@ if ($user && !empty($user['avatar'])) {
                     </div>
 
                     <div class="user-menu">
-                        <a href="<?= $base_url ?>/public/index.php?url=profile">Tài khoản</a>
-                        <a href="<?= $base_url ?>/public/index.php?url=logout">Đăng xuất</a>
+                        <a href="/?url=profile">Tài khoản</a>
+                        <a href="/?url=logout">Đăng xuất</a>
                     </div>
                 </div>
             <?php else: ?>
-                <a href="<?= $base_url ?>/public/index.php?url=login">Đăng nhập</a>
-                <a href="<?= $base_url ?>/public/index.php?url=register" class="btn-register">
+                <a href="/?url=login">Đăng nhập</a>
+                <a href="/?url=register" class="btn-register">
                     Đăng ký
                 </a>
             <?php endif; ?>
@@ -125,7 +125,7 @@ if ($user && !empty($user['avatar'])) {
 
 <script>
 function refreshCartCount(){
-    fetch('<?= $base_url ?>/public/index.php?url=cart/count')
+    fetch('/?url=cart/count')
         .then(res => res.json())
         .then(data => {
             const el = document.getElementById('cart-count');
