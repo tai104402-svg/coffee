@@ -5,11 +5,11 @@ class Database {
     public static function connect() {
         if (self::$conn === null) {
             try {
-                $host = 'sql3.freesqldatabase.com';
-                $db   = 'sql3813594';
-                $user = 'sql3813594';
-                $pass = 'ViQuMb6UAA';
-                $port = 3306;
+                $host = getenv('DB_HOST') ?: 'sql3.freesqldatabase.com';
+                $db   = getenv('DB_NAME') ?: 'sql3813594';
+                $user = getenv('DB_USER') ?: 'sql3813594';
+                $pass = getenv('DB_PASS') ?: 'ViQuMb6UAA';
+                $port = getenv('DB_PORT') ?: 3306;
                 $charset = 'utf8mb4';
 
                 $dsn = "mysql:host=$host;port=$port;dbname=$db;charset=$charset";
@@ -18,6 +18,7 @@ class Database {
                     PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
                     PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
                     PDO::ATTR_EMULATE_PREPARES   => false,
+                    PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT => false
                 ];
 
                 self::$conn = new PDO($dsn, $user, $pass, $options);
