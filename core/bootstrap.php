@@ -1,51 +1,50 @@
 <?php
-session_start();
+// ========================================
+// BOOTSTRAP FILE - FIX FOR RENDER + DOCKER
+// ========================================
 
-/*
-|--------------------------------------------------------------------------
-| Database
-|--------------------------------------------------------------------------
-*/
-require_once __DIR__ . '/../config/database.php';
+// KHÔNG cho phép output trước session
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
-/*
-|--------------------------------------------------------------------------
-| Middleware
-|--------------------------------------------------------------------------
-*/
-require_once __DIR__ . '/../app/middleware/auth.php';
+// Đường dẫn gốc project (/var/www/html)
+$ROOT_PATH = dirname(__DIR__);
 
-/*
-|--------------------------------------------------------------------------
-| Controllers - Auth & Home
-|--------------------------------------------------------------------------
-*/
-require_once __DIR__ . '/../app/controllers/AuthController.php';
-require_once __DIR__ . '/../app/controllers/HomeController.php';
+// ========================================
+// Database
+// ========================================
+require_once $ROOT_PATH . '/config/database.php';
 
-/*
-|--------------------------------------------------------------------------
-| Controllers - User
-|--------------------------------------------------------------------------
-*/
-require_once __DIR__ . '/../app/controllers/ReservationController.php';
+// ========================================
+// Middleware
+// ========================================
+require_once $ROOT_PATH . '/app/middleware/auth.php';
 
-/*
-|--------------------------------------------------------------------------
-| Controllers - Admin
-|--------------------------------------------------------------------------
-*/
-require_once __DIR__ . '/../app/controllers/AdminUserController.php';
-require_once __DIR__ . '/../app/controllers/AdminCategoryController.php';
-require_once __DIR__ . '/../app/controllers/ProductController.php';
-require_once __DIR__ . '/../app/controllers/CartController.php';
-require_once __DIR__ . '/../app/controllers/AdminRevenueController.php';
-require_once __DIR__ . '/../app/controllers/PageController.php';
-require_once __DIR__ . '/../app/controllers/UserController.php';
-require_once __DIR__ . '/../app/controllers/OrderController.php';
+// ========================================
+// Controllers - Auth & Home
+// ========================================
+require_once $ROOT_PATH . '/app/controllers/AuthController.php';
+require_once $ROOT_PATH . '/app/controllers/HomeController.php';
 
-require_once __DIR__ . '/../app/controllers/AdminProductController.php';
-require_once __DIR__ . '/../app/controllers/AdminReservationController.php';
-require_once __DIR__ . '/../app/controllers/AdminStaffController.php';
-require_once __DIR__ . '/../app/controllers/StaffController.php';
+// ========================================
+// Controllers - User
+// ========================================
+require_once $ROOT_PATH . '/app/controllers/ReservationController.php';
 
+// ========================================
+// Controllers - Admin
+// ========================================
+require_once $ROOT_PATH . '/app/controllers/AdminUserController.php';
+require_once $ROOT_PATH . '/app/controllers/AdminCategoryController.php';
+require_once $ROOT_PATH . '/app/controllers/ProductController.php';
+require_once $ROOT_PATH . '/app/controllers/CartController.php';
+require_once $ROOT_PATH . '/app/controllers/AdminRevenueController.php';
+require_once $ROOT_PATH . '/app/controllers/PageController.php';
+require_once $ROOT_PATH . '/app/controllers/UserController.php';
+require_once $ROOT_PATH . '/app/controllers/OrderController.php';
+
+require_once $ROOT_PATH . '/app/controllers/AdminProductController.php';
+require_once $ROOT_PATH . '/app/controllers/AdminReservationController.php';
+require_once $ROOT_PATH . '/app/controllers/AdminStaffController.php';
+require_once $ROOT_PATH . '/app/controllers/StaffController.php';
