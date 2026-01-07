@@ -1,14 +1,10 @@
 <?php
+// 1. Load bootstrap trước để thiết lập cấu hình hệ thống và khởi tạo session
 require_once __DIR__ . '/../core/bootstrap.php';
 
+// 2. Chỉ bật báo lỗi khi cần debug, bootstrap thường đã có cấu hình này
 ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-// THÊM DÒNG NÀY ĐỂ LOAD THƯ VIỆN
-//require_once __DIR__ . '/../vendor/autoload.php';
 
 $url = $_GET['url'] ?? '';
 
