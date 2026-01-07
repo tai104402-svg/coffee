@@ -1,0 +1,10 @@
+/vendor/
+public/assets/uploads/*
+/storage/
+/vendor
+/node_modules
+*.mp4
+*.xls
+/storage/logs
+/storage/cache
+.env
