@@ -15,8 +15,13 @@ $url = $_GET['url'] ?? '';
 switch ($url) {
     
     case '':
+    if (isLoggedIn()) {
         (new HomeController)->index();
-        break;
+    } else {
+        (new AuthController)->login();
+    }
+    break;
+
 
     case 'cart/add':
         requireLogin();
