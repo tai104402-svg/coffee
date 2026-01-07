@@ -9,18 +9,19 @@ require_once __DIR__ . '/../layouts/header.php';
     </div>
 
     <div class="banner-images">
-        <img src="/GocCaPhe/public/assets/img/g1.jpg" class="banner-img">
-        <img src="/GocCaPhe/public/assets/img/gg.jpg" class="banner-img">
-        <img src="/GocCaPhe/public/assets/img/goc.jpg" class="banner-img">
-    </div>
+    <img src="/assets/img/g1.jpg" class="banner-img">
+    <img src="/assets/img/gg.jpg" class="banner-img">
+    <img src="/assets/img/goc.jpg" class="banner-img">
+</div>
 </section>
 
 <section class="sub-images">
-    <img src="/GocCaPhe/public/assets/img/g1.jpg">
-    <img src="/GocCaPhe/public/assets/img/g2.jpg">  
-    <img src="/GocCaPhe/public/assets/img/g3.jpg">
-    <img src="/GocCaPhe/public/assets/img/g4.jpg">
+    <img src="/assets/img/g1.jpg">
+    <img src="/assets/img/g2.jpg">  
+    <img src="/assets/img/g3.jpg">
+    <img src="/assets/img/g4.jpg">
 </section>
+
 
 <?php
 require_once __DIR__ . '/../layouts/footer.php';
