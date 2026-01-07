@@ -59,7 +59,7 @@ class AdminProductController {
             'status' => $status
         ]);
 
-        header('Location: /GocCaPhe/public/index.php?url=admin/products');
+        header('Location: /public/index.php?url=admin/products');
         exit;
     }
 
@@ -106,7 +106,7 @@ class AdminProductController {
             $stmt->execute([$category_id, $name, $price, $description, $status, $id]);
         }
 
-        header('Location: /GocCaPhe/public/index.php?url=admin/products');
+        header('Location: /public/index.php?url=admin/products');
         exit;
     }
 
@@ -116,7 +116,7 @@ class AdminProductController {
         $stmt = $this->pdo->prepare("DELETE FROM products WHERE id=?");
         $stmt->execute([$id]);
 
-        header('Location: /GocCaPhe/public/index.php?url=admin/products');
+        header('Location: /public/index.php?url=admin/products');
         exit;
     }
 }

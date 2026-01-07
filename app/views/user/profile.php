@@ -1,5 +1,5 @@
 <?php require_once __DIR__ . '/../layouts/header.php'; ?>
-<link rel="stylesheet" href="/GocCaPhe/public/assets/css/profile.css">
+<link rel="stylesheet" href="/public/assets/css/profile.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
 <div class="container mt-5">
@@ -61,7 +61,7 @@
 
             <div class="profile-body">
                 <div class="profile-info">
-                    <form action="/GocCaPhe/public/index.php?url=profile/update" method="POST" enctype="multipart/form-data">
+                    <form action="/public/index.php?url=profile/update" method="POST" enctype="multipart/form-data">
                         <input type="file" name="avatar" id="file-input" hidden accept="image/*">
 
                         <div class="form-group-row">
@@ -93,7 +93,7 @@
                     <hr class="my-5">
 
                     <h4 class="mb-4" style="color: #4b2e1f;">Đổi mật khẩu</h4>
-                    <form action="/GocCaPhe/public/index.php?url=profile/update-password" method="POST">
+                    <form action="/public/index.php?url=profile/update-password" method="POST">
                         <div class="form-group-row">
                             <label>Mật khẩu cũ</label>
                             <input type="password" name="old_password" required placeholder="********">

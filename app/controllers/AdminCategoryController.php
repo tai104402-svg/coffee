@@ -61,7 +61,7 @@ class AdminCategoryController {
         $stmt = $this->pdo->prepare("UPDATE categories SET name=?, description=? WHERE id=?");
         $stmt->execute([$name, $description, $id]);
 
-        header('Location: /GocCaPhe/public/index.php?url=admin/categories');
+        header('Location: /public/index.php?url=admin/categories');
         exit;
     }
 
@@ -79,7 +79,7 @@ class AdminCategoryController {
         $stmt = $this->pdo->prepare("DELETE FROM categories WHERE id=?");
         $stmt->execute([$id]);
 
-        header('Location: /GocCaPhe/public/index.php?url=admin/categories');
+        header('Location: /public/index.php?url=admin/categories');
         exit;
     }
 }
