@@ -7,7 +7,6 @@ if (session_status() === PHP_SESSION_NONE) {
 
 // Root path (/var/www/html)
 $ROOT_PATH = dirname(__DIR__);
-
 // ========================================
 // Composer autoload (OPTIONAL)
 // ========================================
