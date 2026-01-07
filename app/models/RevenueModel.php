@@ -1,5 +1,6 @@
 <?php
-require_once __DIR__ . '/../../config/Database.php';
+require_once dirname(__DIR__, 2) . '/config/Database.php';
+
 
 class RevenueModel {
     private $pdo;
