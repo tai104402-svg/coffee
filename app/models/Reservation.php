@@ -1,41 +1,32 @@
 <?php
-// ================================
-// FIX FOR RENDER + DOCKER
-// ================================
-
-// Load Composer autoload (RẤT QUAN TRỌNG)
-require_once dirname(__DIR__, 2) . '/vendor/autoload.php';
-
-// Load Database (chữ thường – đúng Linux)
-require_once dirname(__DIR__, 2) . '/config/database.php';
-
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 
-class Reservation {
-
-    private static function db() {
+class Reservation
+{
+    private static function db()
+    {
         return Database::connect();
     }
 
-    private static function excelPath() {
+    private static function excelPath()
+    {
         return dirname(__DIR__, 2) . '/storage/reservations.xlsx';
     }
 
-
-    /* ================= CREATE (Cập nhật thêm user_id) ================= */
-    public static function create($data) {
+    /* ================= CREATE ================= */
+    public static function create($data)
+    {
         $conn = self::db();
 
-        // Thêm user_id vào câu lệnh INSERT
         $sql = "INSERT INTO reservations
                 (user_id, hoten, phone, songuoi, ngay, gio, ghichu, trangthai)
                 VALUES (?, ?, ?, ?, ?, ?, ?, 'CHO_DUYET')";
 
         $stmt = $conn->prepare($sql);
         $stmt->execute([
-            $data['user_id'], // Thêm tham số này
+            $data['user_id'],
             $data['hoten'],
             $data['phone'],
             $data['songuoi'],
@@ -45,75 +36,74 @@ class Reservation {
         ]);
 
         $id = $conn->lastInsertId();
-        // Excel giữ nguyên logic cũ (có thể thêm cột User ID vào excel nếu cần)
         self::appendExcel($id, $data, 'CHO_DUYET');
     }
 
-    /* ================= GET BY USER (MỚI - Xem lịch sử) ================= */
-    public static function getByUser($userId) {
-        $conn = self::db();
-        $stmt = $conn->prepare("SELECT * FROM reservations WHERE user_id = ? ORDER BY id DESC");
+    /* ================= GET BY USER ================= */
+    public static function getByUser($userId)
+    {
+        $stmt = self::db()->prepare(
+            "SELECT * FROM reservations WHERE user_id = ? ORDER BY id DESC"
+        );
         $stmt->execute([$userId]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    /* ================= READ (SỬA) ================= */
-    public static function all() {
-        // LEFT JOIN với bảng users để lấy tên và vai trò của người duyệt
-        $sql = "SELECT r.*, u.name AS staff_name, u.role AS staff_role 
+    /* ================= READ ================= */
+    public static function all()
+    {
+        $sql = "SELECT r.*, u.name AS staff_name, u.role AS staff_role
                 FROM reservations r
                 LEFT JOIN users u ON r.approved_by = u.id
                 ORDER BY r.id DESC";
-                
+
         return self::db()->query($sql)->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    /* ================= APPROVE (SỬA) ================= */
-    public static function approve($id, $staffId) {
-        $sql = "UPDATE reservations 
-                SET trangthai='DA_DUYET', 
-                    approved_by=?, 
-                    approved_at=NOW() 
+    /* ================= APPROVE ================= */
+    public static function approve($id, $staffId)
+    {
+        $sql = "UPDATE reservations
+                SET trangthai='DA_DUYET',
+                    approved_by=?,
+                    approved_at=NOW()
                 WHERE id=?";
-        self::db()->prepare($sql)->execute([$staffId, $id]);
 
+        self::db()->prepare($sql)->execute([$staffId, $id]);
         self::updateExcelStatus($id, 'DA_DUYET');
     }
 
-    /* ================= CANCEL (SỬA) ================= */
-    public static function cancel($id, $staffId) {
-        $sql = "UPDATE reservations 
-                SET trangthai='HUY', 
-                    approved_by=?, 
-                    approved_at=NOW() 
+    /* ================= CANCEL ================= */
+    public static function cancel($id, $staffId)
+    {
+        $sql = "UPDATE reservations
+                SET trangthai='HUY',
+                    approved_by=?,
+                    approved_at=NOW()
                 WHERE id=?";
-        self::db()->prepare($sql)->execute([$staffId, $id]);
 
+        self::db()->prepare($sql)->execute([$staffId, $id]);
         self::updateExcelStatus($id, 'HUY');
     }
-    
-    // Hàm thêm dòng mới vào Excel
-    private static function appendExcel($id, $data, $status) {
+
+    /* ================= EXCEL ================= */
+    private static function appendExcel($id, $data, $status)
+    {
         $path = self::excelPath();
 
-        // Kiểm tra file có tồn tại không để load hoặc tạo mới
         if (file_exists($path) && filesize($path) > 0) {
             try {
                 $spreadsheet = IOFactory::load($path);
-                $sheet = $spreadsheet->getActiveSheet();
             } catch (Exception $e) {
                 $spreadsheet = self::createNewSpreadsheet();
-                $sheet = $spreadsheet->getActiveSheet();
             }
         } else {
             $spreadsheet = self::createNewSpreadsheet();
-            $sheet = $spreadsheet->getActiveSheet();
         }
 
-        // Tìm dòng trống cuối cùng
+        $sheet = $spreadsheet->getActiveSheet();
         $row = $sheet->getHighestRow() + 1;
 
-        // Ghi dữ liệu
         $sheet->fromArray([
             $id,
             $data['hoten'],
@@ -122,56 +112,39 @@ class Reservation {
             $data['ngay'],
             $data['gio'],
             $data['ghichu'],
-            $status // Cột H (Cột thứ 8)
+            $status
         ], null, "A{$row}");
 
-        // Lưu file
-        $writer = new Xlsx($spreadsheet);
-        $writer->save($path);
+        (new Xlsx($spreadsheet))->save($path);
     }
 
-    // Hàm cập nhật trạng thái (Duyệt/Hủy) trong Excel
-    private static function updateExcelStatus($id, $status) {
+    private static function updateExcelStatus($id, $status)
+    {
         $path = self::excelPath();
-        
-        // Nếu file không tồn tại thì không làm gì cả
-        if (!file_exists($path) || filesize($path) == 0) return;
+        if (!file_exists($path) || filesize($path) === 0) return;
 
         try {
             $spreadsheet = IOFactory::load($path);
             $sheet = $spreadsheet->getActiveSheet();
-            $found = false;
 
-            // Duyệt qua các dòng để tìm ID khớp
-            // Bắt đầu từ dòng 2 (vì dòng 1 là tiêu đề)
             foreach ($sheet->getRowIterator(2) as $row) {
-                $rowIndex = $row->getRowIndex();
-                $cellId = $sheet->getCell("A{$rowIndex}")->getValue(); // Cột A là ID
-
-                if ($cellId == $id) {
-                    // Cập nhật cột H (Trạng thái)
-                    $sheet->setCellValue("H{$rowIndex}", $status);
-                    $found = true;
-                    break; 
+                $i = $row->getRowIndex();
+                if ($sheet->getCell("A{$i}")->getValue() == $id) {
+                    $sheet->setCellValue("H{$i}", $status);
+                    break;
                 }
             }
 
-            // Nếu tìm thấy và sửa xong thì lưu lại
-            if ($found) {
-                $writer = new Xlsx($spreadsheet);
-                $writer->save($path);
-            }
+            (new Xlsx($spreadsheet))->save($path);
         } catch (Exception $e) {
-            // Ghi log lỗi nếu cần: error_log($e->getMessage());
+            // error_log($e->getMessage());
         }
     }
 
-    // Hàm tạo file Excel mới kèm tiêu đề
-    private static function createNewSpreadsheet() {
+    private static function createNewSpreadsheet()
+    {
         $spreadsheet = new Spreadsheet();
-        $sheet = $spreadsheet->getActiveSheet();
-        // Tạo tiêu đề cột
-        $sheet->fromArray([
+        $spreadsheet->getActiveSheet()->fromArray([
             ['ID', 'Họ tên', 'Phone', 'Số người', 'Ngày', 'Giờ', 'Ghi chú', 'Trạng thái']
         ]);
         return $spreadsheet;

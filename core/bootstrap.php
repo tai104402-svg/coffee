@@ -2,7 +2,10 @@
 // ========================================
 // BOOTSTRAP FILE - FIX FOR RENDER + DOCKER
 // ========================================
+session_start();
 
+require_once dirname(__DIR__) . '/vendor/autoload.php';
+require_once dirname(__DIR__) . '/config/database.php'
 // KHÔNG cho phép output trước session
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
