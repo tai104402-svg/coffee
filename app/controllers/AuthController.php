@@ -14,7 +14,7 @@ class AuthController {
             exit;
         }
 
-        $email = trim($_POST['email'] ?? '');
+        $email = strtolower(trim($_POST['email'] ?? ''));
         $password = trim($_POST['password'] ?? '');
 
         if ($email === '' || $password === '') {
@@ -25,8 +25,14 @@ class AuthController {
 
         $pdo = Database::connect();
 
-        $stmt = $pdo->prepare("SELECT * FROM users WHERE email = :email LIMIT 1");
-        $stmt->execute(['email' => $email]);
+
+        $stmt = $pdo->prepare(
+    "SELECT * FROM users WHERE LOWER(email) = :email LIMIT 1"
+);
+$stmt->execute([
+    'email' => $email
+]);
+
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if (!$user || !password_verify($password, $user['password'])) {
