@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once __DIR__ . '/../core/bootstrap.php';
 
 ini_set('display_errors', 1);
