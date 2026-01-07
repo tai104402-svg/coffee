@@ -12,12 +12,7 @@ ini_set('display_errors', 1);
 require_once __DIR__ . '/../core/bootstrap.php';
 // THÊM DÒNG NÀY ĐỂ LOAD THƯ VIỆN
 require_once __DIR__ . '/../vendor/autoload.php';
-
-$url = $_GET['url'] ?? '';
-
-switch ($url) {
-    
-
+  
 // ===== LOAD BOOTSTRAP (SESSION + AUTOLOAD + CONFIG) =====
 require_once __DIR__ . '/../core/bootstrap.php';
 
