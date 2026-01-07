@@ -26,13 +26,13 @@ if ($user && !empty($user['avatar'])) {
     <title>Góc Cà Phê</title>
 
     <!-- CSS GLOBAL -->
-    <link rel="stylesheet" href="/GocCaPhe/public/assets/css/base.css">
-    <link rel="stylesheet" href="/GocCaPhe/public/assets/css/header.css">
-    <link rel="stylesheet" href="/GocCaPhe/public/assets/css/trangchu.css">
-    <link rel="stylesheet" href="/GocCaPhe/public/assets/css/footer.css">
-    <link rel="stylesheet" href="/GocCaPhe/public/assets/css/style.css">
-    <link rel="stylesheet" href="/GocCaPhe/public/assets/css/introduce.css">
-    <link rel="stylesheet" href="/GocCaPhe/public/assets/css/profile.css">
+    <link rel="stylesheet" href="/public/assets/css/base.css">
+    <link rel="stylesheet" href="/public/assets/css/header.css">
+    <link rel="stylesheet" href="/public/assets/css/trangchu.css">
+    <link rel="stylesheet" href="/public/assets/css/footer.css">
+    <link rel="stylesheet" href="/public/assets/css/style.css">
+    <link rel="stylesheet" href="/public/assets/css/introduce.css">
+    <link rel="stylesheet" href="/public/assets/css/profile.css">
 </head>
 <body>
 
