@@ -43,7 +43,7 @@ class AdminUserController {
             'role' => $role
         ]);
 
-        header('Location: /public/index.php?url=admin/users');
+        header('Location: /?url=admin/users');
         exit;
     }
 
@@ -79,7 +79,7 @@ class AdminUserController {
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute($params);
 
-        header('Location: /public/index.php?url=admin/users');
+        header('Location: /?url=admin/users');
         exit;
     }
 
@@ -94,7 +94,7 @@ class AdminUserController {
         $stmt = $this->pdo->prepare("DELETE FROM users WHERE id = ?");
         $stmt->execute([$id]);
 
-        header('Location: /public/index.php?url=admin/users');
+        header('Location: /?url=admin/users');
         exit;
     }
 }

@@ -20,7 +20,7 @@ foreach ($products as $p) {
     <h1>Danh sách sản phẩm</h1>
 
     <!-- Lọc theo danh mục -->
-    <form method="get" action="/public/index.php">
+    <form method="get" action="/">
         <input type="hidden" name="url" value="menu">
         <select name="category_id" onchange="this.form.submit()">
             <option value="">Tất cả</option>
@@ -40,7 +40,7 @@ foreach ($products as $p) {
             <?php foreach ($specialProducts as $p): ?>
                 <div class="product-card special">
                     <div class="product-image">
-                        <img src="/public/assets/img/<?= htmlspecialchars($p['image']) ?>">
+                        <img src="/assets/img/<?= htmlspecialchars($p['image']) ?>">
                     </div>
 
                     <div class="product-info">
@@ -69,7 +69,7 @@ foreach ($products as $p) {
         <?php foreach ($normalProducts as $p): ?>
             <div class="product-card">
                 <div class="product-image">
-                    <img src="/public/assets/img/<?= htmlspecialchars($p['image']) ?>">
+                    <img src="/assets/img/<?= htmlspecialchars($p['image']) ?>">
                 </div>
 
                 <div class="product-info">
@@ -101,7 +101,7 @@ document.querySelectorAll('.add-to-cart-form').forEach(form => {
         e.preventDefault();
         const formData = new FormData(form);
 
-        const res = await fetch('/public/index.php?url=cart/add', {
+        const res = await fetch('/?url=cart/add', {
             method: 'POST',
             body: formData
         });

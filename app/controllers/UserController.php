@@ -6,13 +6,13 @@ class UserController {
     public function profile() {
         // Kiểm tra đăng nhập
         if (!isset($_SESSION['user'])) {
-            header('Location: /public/index.php?url=login');
+            header('Location: /?url=login');
             exit();
         }
 
         $user = $_SESSION['user'];
         // Xử lý đường dẫn avatar hiển thị (nếu null thì dùng ảnh mặc định)
-        $avatarPath = !empty($user['avatar']) ? '/public/' . $user['avatar'] : '/public/assets/images/default-avatar.jng';
+        $avatarPath = !empty($user['avatar']) ? '/' . $user['avatar'] : '/assets/images/default-avatar.jng';
         
         require_once __DIR__ . '/../views/user/profile.php';
     }
@@ -32,7 +32,7 @@ class UserController {
             // $     : Kết thúc chuỗi
             if (!preg_match('/^0\d{9}$/', $phone)) {
                 // Nếu không đúng định dạng, quay lại trang profile và báo lỗi
-                header('Location: /public/index.php?url=profile&status=error_phone');
+                header('Location: /?url=profile&status=error_phone');
                 exit; // Dừng code ngay lập tức, không cho chạy tiếp xuống dưới
             }
             // ------------------------------------------
@@ -45,7 +45,7 @@ class UserController {
             if (isset($_FILES['avatar']) && $_FILES['avatar']['error'] === 0) {
                 $file = $_FILES['avatar'];
                 $fileName = time() . '_' . basename($file['name']); // Đổi tên file để tránh trùng
-                $targetDir = __DIR__ . '/../../public/assets/uploads/'; // Đường dẫn thư mục lưu ảnh
+                $targetDir = __DIR__ . '/../../assets/uploads/'; // Đường dẫn thư mục lưu ảnh
                 $targetFile = $targetDir . $fileName;
 
                 // Tạo thư mục nếu chưa tồn tại
@@ -72,7 +72,7 @@ class UserController {
                 $_SESSION['user']['avatar'] = $avatarPath;
 
                 // Redirect về trang profile kèm thông báo thành công
-                header('Location: /public/index.php?url=profile&status=success');
+                header('Location: /?url=profile&status=success');
             } else {
                 echo "Có lỗi xảy ra khi cập nhật.";
             }

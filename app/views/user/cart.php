@@ -96,12 +96,12 @@ input[type=number] {
                                                 <div class="modal-body text-center">
                                                     <?php 
                                                         // Đường dẫn chuẩn dựa theo ảnh cấu trúc thư mục của bạn
-                                                        $imagePath = "/public/assets/img/" . $item['image']; 
+                                                        $imagePath = "/assets/img/" . $item['image']; 
                                                     ?>
                                                     <img src="<?= $imagePath ?>" 
                                                         class="img-fluid rounded" 
                                                         alt="Sản phẩm"
-                                                        onerror="this.src='/public/assets/img/default.jpg';"> 
+                                                        onerror="this.src='/assets/img/default.jpg';"> 
                                                         </div>
                                             </div>
                                         </div>
@@ -207,7 +207,7 @@ input[type=number] {
                         alert("Số lượng tối đa là 50 sản phẩm");
                         return;
                     }
-                    fetch('/public/index.php?url=cart/updateQuantity', {
+                    fetch('/?url=cart/updateQuantity', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                         body: `id=${tr.dataset.orderItemId}&type=inc`
@@ -233,7 +233,7 @@ input[type=number] {
                         return;
                     }
 
-                    fetch('/public/index.php?url=cart/updateQuantity', {
+                    fetch('/?url=cart/updateQuantity', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                         body: `id=${tr.dataset.orderItemId}&type=dec`
@@ -267,7 +267,7 @@ input[type=number] {
                     }
 
                     // Nếu hợp lệ (1-50) thì mới gửi AJAX
-                    fetch('/public/index.php?url=cart/updateQuantity', {
+                    fetch('/?url=cart/updateQuantity', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                         body: `id=${tr.dataset.orderItemId}&type=set&quantity=${val}`
@@ -294,7 +294,7 @@ input[type=number] {
             }
 
             // Redirect sang trang nhập địa chỉ & thanh toán
-            window.location.href = '/public/index.php?url=cart/checkout&items='+selectedIds.join(',');
+            window.location.href = '/?url=cart/checkout&items='+selectedIds.join(',');
         });
         document.addEventListener('click', function(e){
             if(e.target.closest('.btn-delete')){
@@ -303,7 +303,7 @@ input[type=number] {
 
                 if(!confirm('Bạn có chắc muốn xóa?')) return;
 
-                fetch('/public/index.php?url=cart/delete', {
+                fetch('/?url=cart/delete', {
                     method:'POST',
                     headers:{'Content-Type':'application/x-www-form-urlencoded'},
                     body:'id=' + id

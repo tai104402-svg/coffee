@@ -82,7 +82,7 @@
                                     <!-- ... (Cột Tên, Ca, Giờ, Lương giữ nguyên) ... -->
                                     <td>
                                         <div class="d-flex align-items-center">
-                                            <img src="<?= !empty($row['avatar']) ? '/public/'.$row['avatar'] : '/public/assets/images/default-avatar.png' ?>" 
+                                            <img src="<?= !empty($row['avatar']) ? '/'.$row['avatar'] : '/assets/images/default-avatar.png' ?>" 
                                                  class="rounded-circle me-2" width="40" height="40" style="object-fit:cover;">
                                             <div>
                                                 <strong><?= htmlspecialchars($row['name']) ?></strong><br>

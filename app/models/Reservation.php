@@ -80,7 +80,7 @@ class Reservation {
         $sheet->setTitle('Danh sách đặt bàn');
 
         /* ================= 1. CHÈN LOGO ================= */
-        $logoPath = __DIR__ . '/../../public/assets/img/logo1.jpg'; 
+        $logoPath = __DIR__ . '/../../assets/img/logo1.jpg'; 
         if (file_exists($logoPath)) {
             $drawing = new Drawing();
             $drawing->setName('Logo');

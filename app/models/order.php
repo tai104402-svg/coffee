@@ -52,7 +52,7 @@ class Order
         $sheet->setTitle('Tất cả đơn hàng');
 
         /* ================= 1. LOGO (CĂN GIỮA) ================= */
-        $logoPath = __DIR__ . '/../../public/assets/img/logo1.jpg';
+        $logoPath = __DIR__ . '/../../assets/img/logo1.jpg';
         if (file_exists($logoPath)) {
             $drawing = new Drawing();
             $drawing->setName('Logo');

@@ -16,7 +16,7 @@ require_once __DIR__ . '/../layouts/header.php';
                 </div>
             <?php endif; ?>
 
-            <form method="POST" action="/public/index.php?url=cart/payment">
+            <form method="POST" action="/?url=cart/payment">
                 <!-- Truyền danh sách ID món hàng -->
                 <input type="hidden" name="items" value="<?= implode(',', array_column($items,'id')) ?>">
 

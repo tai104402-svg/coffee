@@ -42,7 +42,7 @@ class AdminProductController {
 
         // Upload image nếu có
         if ($image) {
-            $target_dir = __DIR__ . '/../../public/assets/img/';
+            $target_dir = __DIR__ . '/../../assets/img/';
             move_uploaded_file($_FILES['image']['tmp_name'], $target_dir . $image);
         }
 
@@ -59,7 +59,7 @@ class AdminProductController {
             'status' => $status
         ]);
 
-        header('Location: /public/index.php?url=admin/products');
+        header('Location: /?url=admin/products');
         exit;
     }
 
@@ -93,7 +93,7 @@ class AdminProductController {
         if (!$name || !$price || !$category_id) die('Thiếu dữ liệu bắt buộc');
 
         if ($image) {
-            $target_dir = __DIR__ . '/../../public/assets/img/';
+            $target_dir = __DIR__ . '/../../assets/img/';
             move_uploaded_file($_FILES['image']['tmp_name'], $target_dir . $image);
             $stmt = $this->pdo->prepare(
                 "UPDATE products SET category_id=?, name=?, price=?, image=?, description=?, status=? WHERE id=?"
@@ -106,7 +106,7 @@ class AdminProductController {
             $stmt->execute([$category_id, $name, $price, $description, $status, $id]);
         }
 
-        header('Location: /public/index.php?url=admin/products');
+        header('Location: /?url=admin/products');
         exit;
     }
 
@@ -116,7 +116,7 @@ class AdminProductController {
         $stmt = $this->pdo->prepare("DELETE FROM products WHERE id=?");
         $stmt->execute([$id]);
 
-        header('Location: /public/index.php?url=admin/products');
+        header('Location: /?url=admin/products');
         exit;
     }
 }

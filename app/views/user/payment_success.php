@@ -7,7 +7,7 @@
     <p><strong>Số điện thoại:</strong> <?= htmlspecialchars($_SESSION['last_order']['phone']) ?></p>
     <p><strong>Phương thức thanh toán:</strong> <?= htmlspecialchars($_SESSION['last_order']['method']) ?></p>
 
-    <a href="/public/index.php?url=cart" class="btn btn-primary mt-3">Quay lại giỏ hàng</a>
+    <a href="/?url=cart" class="btn btn-primary mt-3">Quay lại giỏ hàng</a>
 </div>
 <?php
 require_once __DIR__ . '/../layouts/footer.php';

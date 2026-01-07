@@ -45,7 +45,7 @@ class AdminStaffController {
                 $this->staffModel->assignShift($user_id, $work_date, $shift['name'], $shift['start'], $shift['end']);
             }
             
-            header("Location: /public/index.php?url=admin/staff&date=$work_date");
+            header("Location: /?url=admin/staff&date=$work_date");
             exit;
         }
     }
@@ -97,7 +97,7 @@ class AdminStaffController {
                 $this->staffModel->updateShiftDetails($schedule_id, $user_id, $s['name'], $s['start'], $s['end']);
             }
 
-            header("Location: /public/index.php?url=admin/staff&date=$current_date");
+            header("Location: /?url=admin/staff&date=$current_date");
             exit;
         }
     }

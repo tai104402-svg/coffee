@@ -35,7 +35,7 @@
             <label class="form-label">Image</label>
             <input type="file" name="image" class="form-control">
             <?php if ($product['image']): ?>
-                <img src="/public/assets/img/<?= $product['image'] ?>" alt="" style="max-width:100px;margin-top:5px;">
+                <img src="/assets/img/<?= $product['image'] ?>" alt="" style="max-width:100px;margin-top:5px;">
             <?php endif; ?>
         </div>
         <div class="mb-3">

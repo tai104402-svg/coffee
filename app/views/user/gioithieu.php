@@ -25,7 +25,7 @@ require_once __DIR__ . '/../layouts/header.php';
         </div>
 
         <div class="intro-image">
-            <img src="/public/assets/img/bgg-coffee.jpg" alt="">
+            <img src="/assets/img/bgg-coffee.jpg" alt="">
         </div>
     </div>
 </section>
@@ -36,25 +36,25 @@ require_once __DIR__ . '/../layouts/header.php';
     <div class="service-container">
 
         <div class="service-box">
-            <img src="/public/assets/img/icon-coffee.png">
+            <img src="/assets/img/icon-coffee.png">
             <h3>Cà phê rang xay nguyên chất</h3>
             <p>Rang mới mỗi ngày, giữ trọn hương vị.</p>
         </div>
 
         <div class="service-box">
-            <img src="/public/assets/img/icon-machine.png">
+            <img src="/assets/img/icon-machine.png">
             <h3>Máy pha hiện đại</h3>
             <p>Pha chế chuẩn vị quốc tế.</p>
         </div>
 
         <div class="service-box">
-            <img src="/public/assets/img/icon-dessert.png">
+            <img src="/assets/img/icon-dessert.png">
             <h3>Đồ ngọt & trà trái cây</h3>
             <p>Bánh homemade và nước trái cây tươi.</p>
         </div>
 
         <div class="service-box">
-            <img src="/public/assets/img/icon-delivery.png">
+            <img src="/assets/img/icon-delivery.png">
             <h3>Giao hàng tận nơi</h3>
             <p>Hỗ trợ giao hàng nội thành.</p>
         </div>
@@ -88,6 +88,6 @@ require_once __DIR__ . '/../layouts/header.php';
         Robusta có hàm lượng caffeine cao, vị đậm, ít chua.
         Việt Nam là một trong những nước xuất khẩu Robusta lớn nhất thế giới.
     </p>
-    <img src="/public/assets/img/robusta.jpg">
+    <img src="/assets/img/robusta.jpg">
 </section>
 <?php require_once __DIR__ . '/../layouts/footer.php'; ?>

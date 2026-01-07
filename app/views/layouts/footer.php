@@ -16,9 +16,9 @@
 
         <div>
             <h4>Khám phá</h4>
-            <a href="/public/index.php">Trang chủ</a>
-            <a href="/public/index.php?url=menu">Sản phẩm</a>
-            <a href="/public/index.php?url=datban">Đặt bàn</a>
+            <a href="/">Trang chủ</a>
+            <a href="/?url=menu">Sản phẩm</a>
+            <a href="/?url=datban">Đặt bàn</a>
         </div>
 
         <div>

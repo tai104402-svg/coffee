@@ -67,7 +67,7 @@
                 </div>
                 <!-- 4. Xem trang chủ -->
                 <div class="">
-                    <a href="/public/index.php" class="text-decoration-none">
+                    <a href="/" class="text-decoration-none">
                         <div class="feature-box">
                             <i class="fas fa-home"></i>
                             <h5>Trang chủ</h5>
