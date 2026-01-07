@@ -422,7 +422,7 @@ switch ($url) {
 
 
     /* ================= 404 ================= */
-    default:
+    default:{
         http_response_code(404);
         echo '404 - Không tìm thấy trang';
         break;
