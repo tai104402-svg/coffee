@@ -27,8 +27,8 @@ class AuthController {
 
 
         $stmt = $pdo->prepare(
-    "SELECT * FROM users WHERE LOWER(email) = :email LIMIT 1"
-);
+        "SELECT * FROM users WHERE LOWER(email) = :email LIMIT 1"
+        );
 $stmt->execute([
     'email' => $email
 ]);
@@ -45,7 +45,9 @@ $stmt->execute([
         unset($user['password']);
         $_SESSION['user'] = $user;
 
-        switch ($user['role']) {
+        $role = strtoupper($user['role']); // ← THÊM DÒNG NÀY
+
+        switch ($role) {
             case 'ADMIN':
                 header("Location: /?url=admin");
                 break;
@@ -56,6 +58,7 @@ $stmt->execute([
                 header("Location: /");
         }
         exit;
+
     }
 
     // ================= REGISTER =================
