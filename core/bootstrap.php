@@ -1,5 +1,4 @@
 <?php
-<<<<<<< HEAD
 session_start();
 
 /*
@@ -50,7 +49,6 @@ require_once __DIR__ . '/../app/controllers/AdminReservationController.php';
 require_once __DIR__ . '/../app/controllers/AdminStaffController.php';
 require_once __DIR__ . '/../app/controllers/StaffController.php';
 
-=======
 // ========================================
 // BOOTSTRAP FILE - FIX FOR RENDER + DOCKER
 // ========================================
@@ -103,4 +101,3 @@ require_once $ROOT_PATH . '/app/controllers/AdminProductController.php';
 require_once $ROOT_PATH . '/app/controllers/AdminReservationController.php';
 require_once $ROOT_PATH . '/app/controllers/AdminStaffController.php';
 require_once $ROOT_PATH . '/app/controllers/StaffController.php';
->>>>>>> dcea8e81e23200a1ef932b7761314d51206950ef
