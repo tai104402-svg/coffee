@@ -3,7 +3,6 @@
 <div class="container mt-4 mb-5">
     <h3 class="text-primary"><i class="fas fa-file-invoice-dollar"></i> Quản lý đơn hàng</h3>
 
-<<<<<<< HEAD
     <div class="d-flex justify-content-between align-items-center mb-3">
     <div></div>
 
@@ -14,8 +13,6 @@
     </a>
 </div>
 
-=======
->>>>>>> dcea8e81e23200a1ef932b7761314d51206950ef
     <div class="card shadow-sm">
         <div class="card-body p-0">
             <table class="table table-bordered table-hover align-middle mb-0">

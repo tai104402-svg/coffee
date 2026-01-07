@@ -1,9 +1,16 @@
 <?php
 ob_start();
 
+$isHttps = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off')
+           || ($_SERVER['SERVER_PORT'] == 443);
+ini_set('session.cookie_secure', '1');
+ini_set('session.cookie_httponly', '1');
+ini_set('session.cookie_samesite', 'None');
+
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
+
 
 // Root path (/var/www/html)
 $ROOT_PATH = dirname(__DIR__);
