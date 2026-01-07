@@ -29,8 +29,8 @@ class AuthController {
         $stmt = $pdo->prepare(
         "SELECT * FROM users WHERE LOWER(email) = :email LIMIT 1"
         );
-$stmt->execute([
-    'email' => $email
+        $stmt->execute([
+        'email' => $email
 ]);
 
         $user = $stmt->fetch(PDO::FETCH_ASSOC);

@@ -1,6 +1,6 @@
 <?php if (!empty($_SESSION['error'])): ?>
     <div class="alert-error">
-        ⚠️ <?= $_SESSION['error'] ?>
+        ⚠️ <?= htmlspecialchars($_SESSION['error']) ?>
     </div>
     <?php unset($_SESSION['error']); ?>
 <?php endif; ?>

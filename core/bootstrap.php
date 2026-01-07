@@ -1,47 +1,47 @@
 <?php
 ob_start();
 
-$isHttps = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off')
-           || ($_SERVER['SERVER_PORT'] == 443);
-ini_set('session.cookie_httponly', 1);
+/* ================= SESSION CONFIG ================= */
 
-if (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') {
-    ini_set('session.cookie_secure', 1);
+$isHttps =
+    (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off')
+    || (isset($_SERVER['SERVER_PORT']) && $_SERVER['SERVER_PORT'] == 443);
+
+ini_set('session.cookie_httponly', '1');
+
+if ($isHttps) {
+    ini_set('session.cookie_secure', '1');
     ini_set('session.cookie_samesite', 'None');
 } else {
-    ini_set('session.cookie_secure', 0);
+    ini_set('session.cookie_secure', '0');
     ini_set('session.cookie_samesite', 'Lax');
 }
-
 
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
+/* ================= ROOT PATH ================= */
 
-// Root path (/var/www/html)
 $ROOT_PATH = dirname(__DIR__);
-// ========================================
-// Composer autoload (OPTIONAL)
-// ========================================
+
+/* ================= AUTOLOAD ================= */
+
 $autoload = $ROOT_PATH . '/vendor/autoload.php';
 if (file_exists($autoload)) {
     require_once $autoload;
 }
 
-// ========================================
-// Database
-// ========================================
+/* ================= DATABASE ================= */
+
 require_once $ROOT_PATH . '/config/database.php';
 
-// ========================================
-// Middleware
-// ========================================
+/* ================= MIDDLEWARE ================= */
+
 require_once $ROOT_PATH . '/app/middleware/auth.php';
 
-// ========================================
-// Controllers
-// ========================================
+/* ================= CONTROLLERS ================= */
+
 require_once $ROOT_PATH . '/app/controllers/AuthController.php';
 require_once $ROOT_PATH . '/app/controllers/HomeController.php';
 require_once $ROOT_PATH . '/app/controllers/ReservationController.php';
