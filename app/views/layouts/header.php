@@ -27,19 +27,20 @@ if ($user && !empty($user['avatar'])) {
 <head>
     <meta charset="UTF-8">
     <title>Góc Cà Phê</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- ===== CSS GLOBAL ===== -->
-    <link rel="stylesheet" href="<?= $base_url ?>/public/assets/css/base.css">
-    <link rel="stylesheet" href="<?= $base_url ?>/public/assets/css/header.css">
-    <link rel="stylesheet" href="<?= $base_url ?>/public/assets/css/trangchu.css">
-    <link rel="stylesheet" href="<?= $base_url ?>/public/assets/css/footer.css">
-    <link rel="stylesheet" href="<?= $base_url ?>/public/assets/css/style.css">
-    <link rel="stylesheet" href="<?= $base_url ?>/public/assets/css/introduce.css">
-    <link rel="stylesheet" href="<?= $base_url ?>/public/assets/css/profile.css">
 
-    <!-- Bootstrap -->
-    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- ===== CSS GLOBAL (Render compatible) ===== -->
+    <link rel="stylesheet" href="/assets/css/base.css">
+    <link rel="stylesheet" href="/assets/css/header.css">
+    <link rel="stylesheet" href="/assets/css/trangchu.css">
+    <link rel="stylesheet" href="/assets/css/footer.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/introduce.css">
+    <link rel="stylesheet" href="/assets/css/profile.css">
 </head>
+
 
 <body>
 
